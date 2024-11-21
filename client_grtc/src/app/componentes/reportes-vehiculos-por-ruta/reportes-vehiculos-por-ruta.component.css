@@ -1,0 +1,28 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+/* titulo reportes */
+.titulo_reporte{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #404B5A;
+}
+
+/* pie chart */
+.chartContainer {
+    width: 600px;
+    height: 370px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
+}
+
+

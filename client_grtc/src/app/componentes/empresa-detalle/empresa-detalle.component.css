@@ -1,0 +1,206 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+.presentacion_company{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+}
+.icon-custom {
+    font-weight: bold; 
+    font-size: 3.5rem;
+    color: #929FB1;
+}
+.icon-custom_gear{
+    color:rgba(49, 49, 49, 0.452);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 30px;
+}
+
+.titulo_empresa{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #404B5A; 
+}
+
+.subtitulo_empresa{
+    font-weight:400;
+}
+
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091;
+   
+    
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+/* panel del boton resolucon */
+.panel-resolucion{
+   /* padding: 0px 12px 10px 12px ; */
+   margin: 0px 12px ;
+
+}
+
+/* boton para ver la resolucion en pdf */
+
+.icon-custom-pdf{
+    font-weight: bold; 
+    font-size: 20px;
+}
+/* borde del visualizador pdf */
+.border-gray {
+    border-color: #747373; /* Puedes cambiar este valor para ajustar el color gris */
+    border-width: 2px;
+  }
+  /* pdf no encontrado */
+.icon-custom-pdf-resolucion{
+    color:rgba(49, 49, 49, 0.452);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 2000%;
+    margin-bottom: 0px;
+
+}
+.mesaje-resolucion{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.557);
+}
+.img-frame{
+    border: 2px solid #30313292;
+    border-radius: 10px;
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+/* modificar el texto de resolucion cuando pasa el cursor */
+.text_documento:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.collapse {
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .collapsing {
+    height: 0;
+  }
+
+  
+  
+  /* Estilo personalizado para el div hijo */
+.custom-width {
+    width: 100%;
+    margin: 0 auto; /* Centrar horizontalmente */
+    border-radius: 5px;
+
+  }
+
+  .button-full-width {
+    width: 90%;
+  }
+  /* nuevo boton reporte*/
+  .my-button_reporte {
+    padding: 8px 16px;
+    /* background-color: #4CAF50; */
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .my-button_reporte:hover {
+    background-color: #346fcd;
+    cursor: pointer;
+  }
+  .my-button_reporte:active {
+    background-color: #346fcd;
+  }
+
+  /* nuevo boton resolucion*/
+  .my-button_resolucion {
+    padding: 8px 16px;
+    margin-right: 10px;
+    /* background-color: #4CAF50; */
+    background-color: rgb(219, 62, 60);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .my-button_resolucion:hover {
+    background-color: #b02b2b;
+    cursor: pointer;
+  }
+  .my-button_resolucion:active {
+    background-color:  #b02b2b;
+  }
+
+  /* nuevo boton agregar resolucion*/
+  .my-button_ingreso_resolucion {
+    padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    background-color:  rgba(142, 140, 133, 0.315);
+    color:rgb(38, 37, 37);
+    border: none;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    border-top-right-radius:10px;
+    border-top-left-radius: 10px;
+  }
+  .my-button_ingreso_resolucion:hover {
+    background-color: rgba(142, 140, 133, 0.681);
+    color: aliceblue;
+    cursor: pointer;
+  }
+  .my-button_ingreso_resolucion:active {
+    background-color: rgba(142, 140, 133, 0.724);
+  }
+
+  /* iframe pdf */
+  .iframe_pdf{
+    border-bottom:3px solid #393b3c;
+    padding-bottom: 0;
+  }
+
+  /* titulo de la empresa */
+  .titulo-empresa{
+    margin-right: -10px;
+  }
+
+  .row-titulo{
+    border: 2px solid rgba(136, 140, 147, 0.256);
+    border-radius: 10px;
+    margin: 0px 10px;
+    margin-bottom: 10px;
+  }
+  /* titulo estado */
+  .titulo-estado{
+    margin: 9px 0px 0px 0px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #404b5abe; 
+  }
+
+  /* container */
+  .container{
+    margin-top: 10px;
+  }
+ 
+

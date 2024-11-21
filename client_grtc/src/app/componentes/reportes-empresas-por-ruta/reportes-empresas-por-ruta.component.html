@@ -1,0 +1,111 @@
+<div class="text-center">
+    <h2 class="titulo_reporte "> Reporte - Empresas por ruta</h2>  
+</div>
+<div class="center-container ">
+  <div class="chartContainer">
+    <apx-chart [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels" [dataLabels]="chartDataLabels" ></apx-chart>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-md-12 col-sm-12 ">
+    <div class="card rounded shadow border-2   ">
+                  
+      <div class="card-header  ">
+        <h5>Cantidad de Empresas por Ruta</h5>
+      </div>
+      <div class="card-body px-5 bg-white rounded">
+    
+        <div class="table-responsive">
+         
+          <table class="table text-center table-hover">
+             
+              <thead class="text-white table-success">
+                  <tr>
+                    <th scope="col">Nro</th>
+                    <th scope="col">ORIGEN</th>
+                    <th scope="col">DESTINO</th>                                                
+                    <th scope="col">CANTIDAD</th> 
+                  </tr>
+                </thead>
+    
+                <tbody >
+                  <tr *ngFor="let item of cantidadEmpresaPorRuta, index as i">
+                   <th scope="row">{{i+1}}</th>
+                    <td>{{item.origen_ruta}}</td>
+                    <td>{{item.destino_ruta}}</td>
+                    <td>{{item.cantidad_empresas}}</td>
+                  </tr> 
+                </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-md-12 col-sm-12">
+    <div class="card rounded shadow border-2  ">
+                
+      <div class="card-header  ">
+  
+        <div class="py-3 d-flex justify-content-between align-items-center">
+  
+          <select [(ngModel)]="valorSeleccionadoOrigen"  class="form-control mx-2">
+            <option value=""> Seleccione Origen de Ruta</option>
+            <option *ngFor="let ruta of listaRutasOrigen" [value]="ruta.origen_ruta">{{ruta.origen_ruta}}</option>
+          </select>
+  
+          <select [(ngModel)]="valorSeleccionadoDestino"  class="form-control mr-2">
+            <option value=""> Seleccione Destino de Ruta</option>
+            <option *ngFor="let ruta of listaRutasDestino" [value]="ruta.destino_ruta">{{ruta.destino_ruta}}</option>
+          </select>
+          <div>
+            <button class="btn btn-info mx-2" (click)="FiltarPorOrigenDestino()"><i class="bi bi-funnel"> </i> </button>
+          </div>
+          <div>
+            <button class="btn btn-secondary" (click)="refrescar()"><i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+          
+      </div>
+  
+      </div>
+      <div class="card-body px-5 bg-white rounded">
+        <div class="row mb-3">
+          <div class="col-md-2" [style]="disableInvitado"> 
+              <button class="btn btn-success" (click)="ExporToExcel()"><i class="bi bi-file-earmark-excel-fill"></i> Descargar</button>
+          </div>
+          <div class="col-md-10">
+              <input type="text" class="form-control" name="buscar" placeholder="BUSCAR POR EMPRESA" (input)="buscarEnObjeto($event)">
+          </div>
+      </div>
+         
+          
+        <div class="table-responsive">
+         
+          <table class="table text-center table-hover" id="excel-table">
+             
+              <thead class="text-white table-success">
+                  <tr>
+                    <th scope="col">Nro</th>
+                    <th scope="col">ORIGEN</th>
+                    <th scope="col">DESTINO</th>                                                
+                    <th scope="col">EMPRESA</th> 
+                  </tr>
+                </thead>
+    
+                <tbody >
+                  <tr *ngFor="let item of lista_empresas_por_ruta, index as i">
+                   <th scope="row">{{i+1}}</th>
+                    <td>{{item.origen_ruta}}</td>
+                    <td>{{item.destino_ruta}}</td>
+                    <td>{{item.nombre_empresa}}</td>
+                  </tr> 
+                </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+  </div>
+
+  
+</div>
+
+

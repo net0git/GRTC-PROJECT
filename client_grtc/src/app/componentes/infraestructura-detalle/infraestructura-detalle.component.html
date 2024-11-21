@@ -1,0 +1,151 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="row mx-4">
+        <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <div class="container-fluid">
+                <!-- presentacion -->
+                <div class="presentacion_company ">
+                    <div class="col-md-1 d-flex justify-content-end ">
+                        <i class="bi-buildings-fill icon-custom"></i>
+                    </div>                    
+                    <div class="col-md-11 px-md-2">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <h2 class="titulo_empresa">{{infraestructura_detalle.nombre_infraestructura}}</h2>
+                            <h5 class="subtitulo_empresa">{{infraestructura_detalle.tipo_infraestructura}}</h5>
+                            </div>
+                            <div class="col-sm-1"  [style]="disableInvitado">
+                                <i class="bi bi-gear icon-custom_gear" title="Modificar Infraestructura" (click)="ModificarInfraestructura(infraestructura_detalle.id_infraestructura)" ></i>
+                            </div>
+                        </div>                               
+                    </div>
+                </div>
+            <hr>       
+          
+            <div class="container-fluid">          
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="section1-tab" data-bs-toggle="tab" href="#section1">Datos de Infraestructura</a>
+                            </li>
+                                                      
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="section1">
+                                <h1 class="text-start">Expediente: {{infraestructura_detalle.expediente}}</h1> 
+                                <ul class="text-start">
+                                    <li><strong>Denominacion:</strong> {{infraestructura_detalle.nombre_infraestructura}}</li>
+                                    <li><strong>Dirección:</strong> {{infraestructura_detalle.direccion}}</li>    
+                                    <li><strong>Distrito:</strong> {{infraestructura_detalle.distrito}}</li>
+                                    <li><strong>Provincia:</strong> {{infraestructura_detalle.provincia}}</li>
+                                    <li><strong>Departamento:</strong> {{infraestructura_detalle.departamento}}</li>
+
+                                    <li><strong>Fecha de activacion:</strong> {{infraestructura_detalle.fecha_act|date:'dd-MM-yyyy'}}</li>
+                                    <li><strong>Representante legal / DNI:</strong> {{infraestructura_detalle.representante + " / "+ infraestructura_detalle.dni_representante}}</li>
+                                    <li><strong>Empresa / RUC:</strong> {{infraestructura_detalle.empresa + " / "+ infraestructura_detalle.ruc_empresa}}</li>
+
+                                
+                                </ul>      
+                                <div class="text-start panel-resolucion">
+                                    <button class="my-button_resolucion" type="button"  (click)="MostrarUltimaResolucion()"> ver resolucion <i class="bi bi-filetype-pdf icon-custom-pdf"> </i></button>
+                                    <button class="my-button_certificado" type="button" (click)=" MostrarUltimoCertificado()" > ver certificado <i class="bi bi-filetype-pdf icon-custom-pdf"> </i></button>
+
+                                </div>   
+                                <!-- <div class="text-start panel-resolucion">
+                                    <button class="my-button_resolucion" type="button" (click)="MostrarUltimaResolucion()"><i class="bi bi-filetype-pdf icon-custom-pdf"> </i> ver resolucion </button>
+                                    <button class="my-button_certificado"  (click)=" MostrarUltimoCertificado()"><i class="bi bi-clipboard-data icon-custom-pdf"></i> Generar Reporte</button>
+                                   
+                                    
+                                </div>   -->
+                                <div class="container mt-4">
+                                    <div [style]="disableInvitadoTitle">  
+                                        <h5 >Resoluciones</h5>
+                                    </div>
+                                    <div class="mb-0" style="display: flex; justify-content: flex-end;">
+                                        
+                                        <button [style]="disableInvitado" class="my-button_ingreso" (click)="IngresarResolucion(infraestructura_detalle.id_infraestructura)"> <i class="bi bi-arrow-down-square"></i> agregar Resolucion </button>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Número</th>
+                                                <th>Año</th>
+                                                <th>Tomo</th>
+                                                <th>Resolución</th>
+                                                <th>Descripcion</th>
+                                                <th [style]="disableInvitado">Mod</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let resolucion of resoluciones_infraestructura">
+                                                <td>{{resolucion.fecha_resolucion| date:'dd/MM/yyyy'}}</td>
+                                                <td>{{resolucion.nro_resolucion}}</td>
+                                                <td>{{resolucion.anio_resolucion}}</td>
+                                                <td>{{resolucion.tomo_resolucion}}</td>
+                                                <td class="text-primary text_documento" (click)="showDocumentoPdf(resolucion.documento)">{{resolucion.nombre_resolucion}}</td>
+                                                <td>{{resolucion.descripcion}}</td>
+                                                <td [style]="disableInvitado"><img src="assets/imagenes/iconos/modificar_doc.png" width="25px" (click)="ModificarResolucion(infraestructura_detalle.id_infraestructura, resolucion.id_resolucion)"></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="container">
+                                    <div [style]="disableInvitadoTitle">  
+                                        <h5 >Certificados</h5>
+                                    </div>
+                                   
+                                    <div style="display: flex; justify-content: flex-end;">  
+                                        <button [style]="disableInvitado" class="my-button_ingreso" (click)="RegistrarCertificado(infraestructura_detalle.id_infraestructura)"> <i class="bi bi-arrow-down-square"></i> agregar Certificado</button>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Número</th>
+                                                <th>Año</th>
+                                                <th>Tomo</th>
+                                                <th>Certificado</th>
+                                                <th [style]="disableInvitado">Mod</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let certificado of certificados_infraestructura">
+                                                <td>{{certificado.fecha_certificado| date:'dd/MM/yyyy'}}</td>
+                                                <td>{{certificado.nro_certificado}}</td>
+                                                <td>{{certificado.anio_certificado}}</td>
+                                                <td>{{certificado.tomo_certificado}}</td>
+                                                <td class="text-primary text_documento" (click)="showDocumentoPdf(certificado.documento)">{{certificado.nombre_certificado}}</td>
+                                                <td [style]="disableInvitado"><img src="assets/imagenes/iconos/modificar_doc.png" width="25px"  (click)="ModificarCertificado(infraestructura_detalle.id_infraestructura, certificado.id_certificado)"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>    
+            </div >
+            <hr> 
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 "> 
+            <div class="text-center" >
+                <!-- <iframe [src]='pdfUrl' width="100%" height="650px"></iframe>               -->
+                <!-- <iframe [src]='pdfUrl' type="application/pdf" width="100%" height="650px"></iframe>               -->
+                <!-- <iframe [src]="documentoBase64URL"  type="application/pdf" width="100%" height="400px"></iframe> -->
+                <iframe [src]="pdfUrl" type="application/pdf" width="100%" height="850px"></iframe>
+            </div>
+        </div>   
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="Volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="container-fluid">
+        <!-- presentacion -->
+        <div class="presentacion_company ">
+            <div class="col-md-4 d-flex justify-content-end ">
+                <i class="bi bi-building-fill icon-custom"></i>
+            </div>
+            
+            <div class="col-md-8 px-md-2">
+                <h2 class="titulo_empresa">EMPRESAS</h2>
+                <h5 class="subtitulo_empresa">Empresas registradas por tipo de servicio</h5>
+            </div>
+        </div>
+    <hr>
+
+        <!-- agregar y busqueda -->
+        
+
+        <div class="row pb-5">
+            <div class=" col-lg-11 mx-auto">
+               
+              <div class="card rounded shadow border-2 ">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center ">
+                    <button type="button" class="btn btn-success mx-2" (click)="CrearEmpresa()"  [style]="disableInvitado">+add</button>
+                    
+                   
+                    
+                        <select id="tipo_doc" name="tipo_doc" class="form-control mx-4" (change)="seleccionarTipoTransporte($event)">
+                            <option value="">TIPO DE TRASPORTE </option>
+                            <option value="1">TRANSPORTE REGULAR DE PERSONAS</option>
+                            <option value="2">TRANSPORTE TURISTICO</option>
+                            <option value="3">TRANSPORTE DE TRABAJADORES</option>
+                            <option value="4">TRANSPORTE DE ESTUDIANTES</option>        
+                        </select>
+
+                        <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR" (input)="buscarEnObjeto($event)">
+                   
+                </div>
+                <div class="card-body px-4 bg-white rounded">
+                  <div class="table-responsive px-4">
+                    <!-- <button type="button" class="btn btn-success mb-3"  (click)="AgregarUsuario()">+add</button> -->
+                    <div class="form-group">
+                        <div class="row">
+                          
+                            <table class="table text-center  table-hover">
+                                <thead class="thead-ligth bg-secondary text-white table-success">
+                                  <tr >
+                                    <th scope="col">Nro</th>
+                                    <th scope="col">EXP</th>
+                                    <th scope="col">EMPRESA</th>
+                                    <th scope="col">RUC</th>
+                                    <th scope="col">TIPO_SERVICIO</th>
+                                    <th scope="col">FECH_INICIO</th>
+                                    <th scope="col">FECH_FINAL</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">INDICADOR</th>
+                                    <!-- <th scope="col">DETALLE</th>  -->
+                                  </tr>
+                                </thead>
+                                <tbody >
+                                  <tr *ngFor="let empresa of empresas, index as i"  (click)="EmpresaDetalle(empresa.id_empresa_servicio)" class="table-barra">
+                                    
+                                   <th scope="row">{{i+1}}</th>
+                                     <td>{{empresa.expediente}}</td>
+                                     <td>{{empresa.empresa}}</td>
+                                     <td>{{empresa.ruc}}</td>
+                                     <td>{{empresa.tipo_servicio}}</td>
+                                     <td>{{empresa.fecha_inicial| date:'dd/MM/yyyy'}}</td>
+                                     <td>{{empresa.fecha_final| date:'dd/MM/yyyy'}}</td>
+                                     <td>{{empresa.estado}}</td>
+                                     <td> 
+                                     
+                                          <div class="progress progress-sm  mt-2">
+                                                <div class="progress-bar"
+                                                [ngClass]="{ 
+                                                  'bg-info bg-opacity-50': empresa.estado === 'Activo',
+                                                  'bg-secondary  bg-opacity-50': empresa.estado === 'Inactivo',
+                                                  'bg-warning bg-opacity-75': empresa.estado === 'Alerta'
+                                                }"
+                                                role="progressbar" [style.width]="empresa.porcentaje + '%'"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                          </div>
+                                </td>
+                                     <!-- <td><i class="bi bi-file-earmark-check icon-custom-detalle" (click)="EmpresaDetalle(empresa.id_empresa_servicio)" ></i></td> -->
+                                  </tr> 
+                                </tbody>
+                            </table> 
+                        </div>        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="Volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="container-fluid">
+        <!-- presentacion -->
+        <div class="presentacion_company ">
+            <div class="col-md-4 d-flex justify-content-end ">
+                <i class="bi-buildings-fill icon-custom"></i>
+            </div>
+            
+            <div class="col-md-8 px-md-2">
+                <h2 class="titulo_empresa">INFRAESTRUCTURA</h2>
+                <h5 class="subtitulo_empresa">Registro de Terminales y Estaciones de Ruta</h5>
+            </div>
+        </div>
+    <hr>
+        <!-- agregar y busqueda -->
+        
+
+        <div class="row pb-5">
+            <div class=" col-lg-11 mx-auto">
+               
+              <div class="card rounded shadow border-2 ">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center ">
+                    <button type="button" class="btn btn-success mx-4 "  (click)="CrearInfraestructura()" [style]="disableInvitado">+add</button>
+                    <select id="tipo_doc" name="tipo_doc" class="form-control mx-4" (change)="seleccionarTipoInfraestructura($event)">
+                      <option value="0">SELECCIONES TIPO DE TRASPORTE </option>
+                      <option value=1>TERMINAL TERRESTRE</option>
+                      <option value=2>ESTACION DE RUTA TIPO I</option>
+                      <option value=3>ESTACION DE RUTA TIPO II</option>
+                      <option value=4>ESTACION DE RUTA TIPO III</option>      
+                  </select>
+                    <input type="text" class="form-control " name="buscar" placeholder="BUSCAR" (input)="buscarEnObjeto($event)">        
+                </div>
+                <div class="card-body px-4 bg-white rounded">
+                  <div class="table-responsive px-4">
+                    <!-- <button type="button" class="btn btn-success mb-3"  (click)="AgregarUsuario()">+add</button> -->
+                    <div class="form-group">
+                        <div class="row">
+                          
+                            <table class="table text-center  table-hover">
+                                <thead class="thead-ligth bg-secondary text-white table-success">
+                                  <tr >
+                                    <th scope="col">Nro</th>
+                                    <th scope="col">EXP</th>
+                                    <th scope="col">TIPO</th>
+                                    <th scope="col">INFRAESTRUCTURA</th>
+                                    <th scope="col">DIRECCION</th>
+                                    <th scope="col">FECHA</th>
+                                   
+                                  </tr>
+                                </thead>
+                                <tbody >
+                                  <tr *ngFor="let item of Infraestructura, index as i" (click)="InfraestructuraDetalle(item.id_infraestructura)"   class="table-barra">
+                              
+                                   <th scope="row">{{i+1}}</th>
+                                     <td>{{item.expediente}}</td>
+                                     <td>{{item.tipo_infraestructura}}</td>
+                                     <td>{{item.nombre_infraestructura}}</td>
+                                     <td>{{item.direccion}}</td>
+                                     <td>{{item.fecha_act| date:'dd/MM/yyyy'}}</td>
+                                  </tr> 
+                                </tbody>
+                            </table> 
+                        </div>        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+    </div>
+</div>

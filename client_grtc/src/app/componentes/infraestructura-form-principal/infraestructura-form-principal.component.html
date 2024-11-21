@@ -1,0 +1,230 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" >
+            <i class="bi bi-arrow-left text-white" (click)="volver()"> volver </i>
+        </button>
+    </div>
+
+    
+    <div class="container-fluid">
+        <div class="row  d-flex align-items-center presentacion_empresa_servicio offset-md-3">
+            <div class="col-md-4 vertical-center">
+                <i class="bi-buildings-fill icon-custom"></i>
+            </div>
+            
+            <div class="col-md-8">
+                <h2 class="titulo_infraestructura">REGISTRO DE INFRAESTRUCTURA</h2>
+            </div>
+            
+            
+    </div>
+    <div class="contenedor-barra-progreso">
+      <div class="progress-container"  >
+        <div class="progress-bar" id="progressBar"  [style.width]="progressValue + '%'" > </div>
+      </div>
+    </div>
+    <div class="contenedor ">
+    <!-- Paso 1: Información básica del usuario -->
+    <div *ngIf="currentStep === 1" class="">
+      <div class="titleStep">
+        <h4 class="subtitulo_infraestructura">Paso 1: DATOS DE INFRAESTRUCTURA</h4>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 90%;">
+            <div class="card-body">
+                <div class="container">
+                    <div class="col-sm-6">
+                        <label for="tipo_infraestructura" class="form-label mt-2" >Tipo de Infraestructura</label>
+                        <select id="tipo_infraestructura" name="tipo_infraestructura" class="form-control form-select" [(ngModel)]="data_infraestructura.id_tipo_infraestructura" >
+                            <option  value=0>TIPO INFRAESTRUCTURA </option>
+                            <option value=1>TERMINAL TERRESTRE</option>
+                            <option value=2>ESTACION DE RUTA TIPO I</option>  
+                            <option value=3>ESTACION DE RUTA TIPO II</option> 
+                            <option value=4>ESTACION DE RUTA TIPO III</option>    
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="tramite_infraestructura" class="form-label mt-2" >Tramitado En:</label>
+                    <div class="tramite">
+                            
+                            <input type="radio" id="regional" name="tramite" [value]="false" [(ngModel)]="data_infraestructura.mtc" >
+                            <label class="mx-2 "  for="regional">Regional</label>
+                            
+                            <input  type="radio" id="mtc" name="tramite" [value]="true" [(ngModel)]="data_infraestructura.mtc" >
+                            <label class="mx-2 m" for="mtc">MTC</label>
+                            </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre_infraestructura" class="form-label mt-2" >Nombre de la infraestructura:</label>
+                        <input id="nombre_infraestructura" type="text" class="form-control" name="nombre_infraestructura"  [(ngModel)]="data_infraestructura.nombre_infraestructura" (ngModelChange)="data_infraestructura.nombre_infraestructura= convertirAMayusculas($event)">
+                    </div>
+    
+                    <div class="form-group">
+                    
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="departamento_infraestructura" class="form-label mt-3">Departamento:</label>
+                                <select id="departamento_infraestructura" name="departamento_infraestructura" class="form-control" (change)="onDepartamentoChange()" [(ngModel)]="data_infraestructura.departamento" >
+                                    <option value="">DEPARTAMENTO </option>
+                                    <option *ngFor="let departamento of departamentos" [value]="departamento">{{ departamento }}</option>
+                                        
+                                </select>
+                        </div>
+                            
+                            <div class="col-sm-4">
+                                <label for="provincia_infraestructura" class="form-label mt-3">Provincia:</label>
+                                <select id="provincia_infraestructura" name="provincia_infraestructura" class="form-control" (change)="onProvinciaChange()" [(ngModel)]="data_infraestructura.provincia" [disabled]="!data_infraestructura.departamento">
+                                    <option value="">PROVINCIA</option>
+                                    <option *ngFor="let provincia of provincias" [value]="provincia">{{ provincia }}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4" >
+                                <label for="distrito_infraestructura" class="form-label mt-3">Distrito:</label>
+                                <select id="distrito_infraestructura" name="distrito_infraestructura" class="form-control" [disabled]="!data_infraestructura.provincia" [(ngModel)]="data_infraestructura.distrito" >
+                                    <option value="">DISTRITO</option>
+                                    <option *ngFor="let distrito of distritosPorProvincia" [value]="distrito">{{ distrito }}</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                
+                </div>
+    
+                <div class="form-group">
+                    <label for="direccion_infraestructura" class="form-label mt-3" >Direccion:</label>
+                    <input id="direccion_infraestructura" type="text" class="form-control" name="direccion_infraestructura" [(ngModel)]="data_infraestructura.direccion" (ngModelChange)="data_infraestructura.direccion= convertirAMayusculas($event)">
+                </div>
+                <div class="row mb-2">
+                        <div class="form-group col-lg-6 col-sm-12">
+                            <label for="fecha_infraestructura" class="form-label mt-3">Fecha de Activacion:</label>
+                            <input id="fecha_infraestructura" type="date" class="form-control" name="fecha_infraestructura" [(ngModel)]="data_infraestructura.fecha_act">
+                        </div>
+            
+                        <div class="form-group col-lg-6 col-sm-12">
+                            <label for="expediente" class="form-label mt-3" >Expediente:</label>
+                            <input id="expediente" type="text" class="form-control" name="expediente"  [(ngModel)]="data_infraestructura.expediente" (ngModelChange)="data_infraestructura.expediente= convertirAMayusculas($event)">
+                        </div>
+                </div>
+               
+               </div>
+            </div> 
+        </div> 
+      </div>
+      
+      
+                    
+      <div class="my-4 d-flex justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="validarDatosFormularioInfraestructura()" >Siguiente</button> 
+      
+      </div>
+    </div>
+    
+    <!--Paso 2: Información del representante legal =====================================================================================================================================================================-->
+    <div *ngIf="currentStep === 2">
+      <div  class="titleStep"> 
+        <h4 class="subtitulo_infraestructura">Paso 2: REPRESENTANTE LEGAL Y/O EMPRESA</h4>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 90%;">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row"> 
+                        <div class="form-group col-lg-8 col-sm-12">
+                            <label for="nombre_representante" class="form-label mt-2" >Datos del representante legal:</label>
+                            <input id="nombre_representante" type="text" class="form-control" name="nombre_representante" [(ngModel)]="data_infraestructura.representante" (ngModelChange)="data_infraestructura.representante= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-12">
+                            <label for="dni" class="form-label mt-2" >DNI</label>
+                            <input id="dni" type="text" min="0" class="form-control" name="dni" [(ngModel)]="data_infraestructura.dni_representante">
+                        </div>
+                    </div>
+    
+                    <div class="row mb-2"> 
+                        <div class="form-group col-lg-8 col-sm-12">
+                            <label for="nombre_empresa" class="form-label mt-2" >Razon Social:</label>
+                            <input id="nombre_empresa" type="text" class="form-control" name="nombre_empresa" [(ngModel)]="data_infraestructura.empresa" (ngModelChange)="data_infraestructura.empresa= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-12">
+                            <label for="ruc" class="form-label mt-2" >RUC:</label>
+                            <input id="ruc_empresa" type="number" min="0" class="form-control" name="ruc_empresa" [(ngModel)]="data_infraestructura.ruc_empresa">
+                        </div>
+                    </div>
+                </div>
+            </div> 
+          </div> 
+      </div>
+          
+                
+                
+   
+     <div class="my-4 d-flex justify-content-center">
+       <button type="button" class="btn btn-primary mx-2" (click)="prevStep()">Anterior</button>
+       <button type="button" class="btn btn-primary" (click)="validarDatosFormulariorRepresentante()">Siguiente</button>
+    
+     </div>
+    </div>
+    
+    <!-- Paso 3: Registro de Resolucion ==========================================================================================================================================-->
+    <div *ngIf="currentStep === 3">
+      <div class="titleStep">
+        <h4 class="subtitulo_empresa">Paso 3: REGISTRO DE RESOLUCION</h4>
+      </div>
+   
+      
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-md-4 offset-md-2">
+                        <div class="card">
+                          <div class="card-body">
+                            <form>
+                              <div class="mb-3">
+                                <label for="documento_pdf" class="form-label">Documento PDF:</label>
+                                <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" accept=".pdf" autofocus>
+                              </div>
+                              <div class="mb-3">
+                                <input type="text" name="nombre_resolucion" placeholder="titulo de resolucion" class="form-control"  [(ngModel)]="data_resolucion.nombre_resolucion"  (ngModelChange)="data_resolucion.nombre_resolucion= convertirAMayusculas($event)">
+                              </div>
+                              <div class="mb-3">
+                                <input type="numer" name="nro_resolucion" placeholder="numero" class="form-control" [(ngModel)]="data_resolucion.nro_resolucion" >
+                              </div>
+                              <div class="mb-3">
+                                <input type="text" name="anio_resolucion" placeholder="año " class="form-control" [(ngModel)]="data_resolucion.anio_resolucion">
+                              </div>
+                              <div class="mb-1">
+                                <input type="number" name="tomo_resolucion" placeholder="tomo " class="form-control" [(ngModel)]="data_resolucion.tomo_resolucion">
+                              </div>
+                              <div class="mb-3">
+                                <label for="fecha_resolucion" class="form-label mt-3">Fecha:</label>
+                                <input type="date" class="form-control" name="fecha_resolucion" [(ngModel)]="data_resolucion.fecha_resolucion">
+                              </div>
+                              
+                              <div class="mb-3">
+                                <label for="documento_pdf" class="form-label">Descripcion:</label>
+                                <textarea class="form-control" name="descripcion" rows="2" [(ngModel)]="data_resolucion.descripcion" (ngModelChange)="data_resolucion.descripcion= convertirAMayusculas($event)" ></textarea>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col-md-4 text-center">
+                        <div class="text-center" >
+                            <iframe [src]="pdfUrl" type="application/pdf" width="100%" height="540px"></iframe>
+                        </div>
+                  </div>
+                </div>
+              </div>
+      
+      
+
+     <div class="my-4 d-flex justify-content-center">
+       <button type="button" class="btn btn-primary mx-2" (click)="prevStep()">Anterior</button>
+       <button type="button" class="btn btn-primary"  (click)="validarFormularioResolucion()" >Registrar</button>
+     </div>
+    </div>
+   
+    </div>
+    
+    </div>
+  </div>

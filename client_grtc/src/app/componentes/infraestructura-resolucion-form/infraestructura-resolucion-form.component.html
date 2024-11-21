@@ -1,0 +1,55 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <h2 class="text-center mt-4 titulo">{{titulo}}</h2>
+    <div class="container">
+        <div class="row mt-4"> 
+            <div class="col-md-4 offset-md-2">
+                <div class="card">
+                  <div class="card-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="documento_pdf" class="form-label">Documento PDF:</label>
+                        <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" accept=".pdf" autofocus>
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="nombre_resolucion" placeholder="titulo de resolucion" class="form-control"  [(ngModel)]="resolucion.nombre_resolucion"  (ngModelChange)="resolucion.nombre_resolucion= convertirAMayusculas($event)">
+                      </div>
+                      <div class="mb-3">
+                        <input type="number" name="nro_resolucion" placeholder="numero" class="form-control" [(ngModel)]="resolucion.nro_resolucion" >
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="anio_resolucion" placeholder="año " class="form-control" [(ngModel)]="resolucion.anio_resolucion">
+                      </div>
+                      <div class="mb-1">
+                        <input type="number" name="tomo_resolucion" placeholder="tomo " class="form-control" [(ngModel)]="resolucion.tomo_resolucion">
+                      </div>
+                      <div class="mb-3">
+                        <label for="fecha_resolucion" class="form-label mt-3">Fecha:</label>
+                        <input type="date" class="form-control" name="fecha_resolucion" [(ngModel)]="resolucion.fecha_resolucion">
+                      </div>
+                      
+                      <div class="mb-3">
+                        <label for="documento_pdf" class="form-label">Descripcion:</label>
+                        <textarea class="form-control" name="descripcion" rows="2" [(ngModel)]="resolucion.descripcion" (ngModelChange)="resolucion.descripcion= convertirAMayusculas($event)" ></textarea>
+                      </div>
+                      <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-success btn-lg" type="button" (click)="modificar==true?ModificarResolucion():ingresarDatos()" >{{titulo_boton}}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <div class="col-md-4 text-center">
+                <div class="text-center" >
+                    <iframe [src]="pdfUrl" type="application/pdf" width="100%" height="600px"></iframe>
+                </div>
+          </div>
+        </div>
+    </div>
+    
+</div>

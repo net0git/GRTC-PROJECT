@@ -1,0 +1,86 @@
+<div class="panel overflow-x-hidden">
+  <app-navegador></app-navegador>
+  <div class="fondo-volver container-fluid">
+    <button class="m-2 mx-4 btn-volver" (click)="volver()">
+      <i class="bi bi-arrow-left text-white"> volver </i>
+    </button>
+  </div>
+
+
+ <!-- presentacion -->
+ <div class="container-fluid">
+  <div class="presentacion_tuc ">
+    <div class="col-sm-6 col-md-5 d-flex justify-content-end ">
+      <i class="bi bi-card-heading icon-custom mx-2"></i>
+    </div>
+    
+    <div class="col-sm-6 col-md-7 ">
+        <h2 class="titulo">Busqueda de TUC´s por placa</h2>
+    </div>
+  </div>
+ </div>
+ 
+  <div class="container">
+    <div style="padding: 0px 7%;">
+      <div class="card rounded shadow border-2">
+        <div class="card-header">
+          <div class="py-3 d-flex justify-content-center align-items-center">
+            <!--<h6 class="m-0 font-weight-bold text-primary">Tabla Usuarios</h6>-->
+            <form class="row mx-auto">
+              <div class="col-auto">
+                <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA" id="placa">
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary" (click)="listarTucPorPlaca()">BUSCAR</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contendor-tarjeta">
+    <div class=" row d-flex justify-content-center align-items-center">
+    
+      <div class="col-md-3 col-sm-6 m-2 mb-4 mt-4" *ngFor="let tuc of listaTuc">
+        <div class="card shadow border-2">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="m-2">N° de impresión: {{tuc.nro_impresion}} </h5>
+            <h4 class="m-2">TUC: {{tuc.nro_tuc}}</h4>
+          </div>
+          <div class="card-body text-start">
+            <!-- <h6><strong>RAZON SOCIAL:</strong> {{tuc.razon_social}}</h6> -->
+            <ul>
+                  <ul class="list-unstyled custom">
+                    <li><strong>RAZON SOCIAL:</strong> {{tuc.razon_social}}</li>
+                    <li><strong>N° PART REGISTRAL:</strong> {{tuc.nro_part_reg}}</li>
+                    <li><strong>N° RG:</strong> {{tuc.nombre_resolucion}}</li>
+                    <li><strong>MARCA:</strong> {{tuc.marca}}</li>
+                    <li><strong>AÑO DE FABRICACION:</strong> {{tuc.anio_fabricacion}}</li>
+                    <li><strong>COLOR(ES):</strong> {{tuc.color}}</li>
+                    <li><strong>N° CHASIS:</strong> {{tuc.nro_chasis}}</li>
+                    <li><strong>MODALIDAD:</strong> {{tuc.modalidad}}</li>
+                    <li><strong>N° DE ASIENTOS:</strong> {{tuc.nro_asientos}}</li>
+                    <li><strong>PESO NETO:</strong> {{tuc.peso}}</li>
+                    <li><strong>CARGA UTIL:</strong> {{tuc.carga}}</li>
+                    <li><strong>FECHA DE EXPEDIC:</strong> {{tuc.fecha_exp|date:'dd/MM/yyy'}}</li>
+                    <li><strong>FECHA DE VENCIM:</strong> {{tuc.fecha_ven|date:'dd/MM/yyy'}}</li>
+                    <li><strong>CONDICION:</strong> {{tuc.condicion}}</li>
+                  </ul>
+              
+            <hr>
+              <li><strong>RUTA AUTORIZADA A OPERAR:</strong>  {{tuc.ruta}}</li>
+            </ul>
+            <hr>
+            <label class="mx-2 mb-2">Copias: </label>
+            <div class="mb-3">
+              <textarea name="tuc_copia"  class="form-control" rows="2" readonly>{{tuc.copia}}</textarea>
+            </div>
+          </div>
+        
+        </div>
+       </div>
+    </div>
+  </div>
+ 
+</div>

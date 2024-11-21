@@ -1,0 +1,47 @@
+<div class="text-center">
+    <h2 class="titulo_reporte "> Reporte de Conductores</h2>  
+</div>
+<div class="card rounded shadow border-2 ">
+                
+    <div class="card-header  ">
+
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <!--<h6 class="m-0 font-weight-bold text-primary">Tabla Usuarios</h6>-->
+            <input type="text" class="form-control mx-4" name="buscar" placeholder="BUSCAR" (input)="buscarEnListaConductores($event)">
+            
+        </div>
+
+    </div>
+    <div class="card-body px-5 bg-white rounded">
+        <div [style]="disableInvitado">
+            <button class="btn btn-success mb-2" (click)="ExporToExcel()" ><i class="bi bi-file-earmark-excel-fill"></i> Descargar</button>
+        </div>
+        
+      <div class="table-responsive">
+       
+        <table class="table text-center  table-hover" id="excel-table">
+            <thead class="text-white table-success">
+              <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">DNI/CE</th>
+                <th scope="col">DATOS</th>
+                <th scope="col">NRO_LICENCIA</th>
+                <th scope="col">CATEGORIA</th>
+                <th scope="col">EMPRESA</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let conductor of listaConductores, index as i"  >
+               <th scope="row">{{i+1}}</th>
+                <td>{{conductor.numero_documento}}</td>
+                <td>{{conductor.nombre_conductor +' '+conductor.apellido_paterno+' '+conductor.apellido_materno}}</td>
+                <td>{{conductor.nro_licencia}}</td>
+                <td>{{conductor.categoria}}</td>
+                <td>{{conductor.nombre_empresa}}</td>
+              </tr> 
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

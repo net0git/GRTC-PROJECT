@@ -1,0 +1,52 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <h2 class="text-center mt-4 titulo">{{titulo}}</h2>
+    <div class="container">
+        <div class="row mt-4"> 
+            <div class="col-md-4 offset-md-2">
+                <div class="card">
+                  <div class="card-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="documento_pdf" class="form-label">Documento PDF:</label>
+                        <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" accept=".pdf">
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="nombre_certificado" placeholder="titulo de certificado" class="form-control" autofocus [(ngModel)]="certificado.nombre_certificado" (ngModelChange)="certificado.nombre_certificado= convertirAMayusculas($event)" >
+                      </div>
+                      <div class="mb-3">
+                        <input type="number" name="nro_certificado" placeholder="numero" class="form-control" [(ngModel)]="certificado.nro_certificado" >
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" name="anio_certificado" placeholder="año" class="form-control" [(ngModel)]="certificado.anio_certificado">
+                      </div>
+                      <div class="mb-1">
+                        <input type="number" name="tomo_certificado" placeholder="tomo" class="form-control" [(ngModel)]="certificado.tomo_certificado">
+                      </div>
+                      <div class="mb-3">
+                        <label for="fecha_certificado" class="form-label mt-3">Fecha:</label>
+                        <input type="date" class="form-control" name="fecha_certificado" [(ngModel)]="certificado.fecha_certificado">
+                      </div>
+                      
+                      
+                      <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-success btn-lg" type="button"  (click)="modificar==true?ModificarCertificado():ingresarDatos()" >{{titulo_boton}}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <div class="col-md-4 text-center">
+                <div class="text-center" >
+                    <iframe [src]="pdfUrl" type="application/pdf" width="100%" height="500px"></iframe>   
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

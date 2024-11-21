@@ -1,0 +1,86 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+.icon-custom {
+    
+    font-weight: bold; 
+    font-size: 3.5rem;
+    color: #929FB1;
+
+}
+.titulo{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #404B5A; 
+}
+.presentacion_user{
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+.form-label{
+    /* font-weight: bold; */
+    color: rgba(70, 69, 69, 0.662);
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091;
+   
+    
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+/* contenedor */
+.contenedor{
+    margin: 0px 10%;
+}
+
+
+ /* CSS para invertir la dirección de apertura del select */
+.select-reverse {
+    -webkit-appearance: none; /* Desactiva la apariencia nativa del navegador */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") !important; /* Agrega una flecha hacia abajo */
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+  
+  /* Invierte la dirección del menú desplegable */
+  .select-reverse::-ms-expand {
+    transform: rotate(180deg); /* Invierte la flecha para navegadores IE/Edge */
+  }
+  
+  /* Asegura que las opciones se muestren hacia abajo */
+  .select-reverse option {
+    transform: rotate(0deg) !important;
+  }
+  
+
+  /* form control en mayusculas */
+  .form-control{
+    text-transform:uppercase;
+  }
+
+@media  screen and (max-width:1536px) {
+    .contenedor{
+        margin: 0px 5%;   
+  }
+}

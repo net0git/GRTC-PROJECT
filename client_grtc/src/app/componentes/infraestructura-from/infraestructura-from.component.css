@@ -1,0 +1,65 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091; 
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+/* icono de presentacion */
+.icon-custom {
+    
+    color:rgba(31, 30, 30, 0.43);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size:80px;
+
+}
+
+/* encabezado de infraestructura */
+.presentacion_infraestructura{
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+.titulo_infraestructura{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #404B5A;
+}
+.subtitulo_infraestructura{
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #404B5A;
+}
+/* texto de encabezados del formulario */
+.form-label{
+    /* font-weight: bold; */
+    /* color: rgba(70, 69, 69, 0.662); */
+    /* color: rgba(39, 72, 132, 0.662); */
+    color:  #6E7A89;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+/* modificar el tamaño del checkbox */
+.mtc{
+    font-size: 20px;
+}

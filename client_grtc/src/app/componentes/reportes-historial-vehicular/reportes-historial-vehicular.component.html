@@ -1,0 +1,114 @@
+<!-- <div class="container" style="padding: 0px 10%; ">
+    <div style="border: 3px solid #4242425d; padding: 10px; border-radius: 10px; margin-top:10px; margin-bottom: 10px; " >
+        <form class="row g-3 mt-2">
+            
+            <div class="col-auto">
+                <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA" id="placa_vehicular">
+            </div>
+            <div class="col-auto">
+              <button  class="btn btn-primary mb-3" (click)="Buscar_historial_vehicular()">BUSCAR</button>
+            </div>
+        </form>
+    </div>
+    <div  >
+        <table class="table text-center  table-hover">
+            <colgroup>
+              <col style="width: 5%;">
+              <col style="width: 15%;">
+              <col style="width: 10%;">
+              <col style="width: 10%;">
+              <col style="width: 20%;">
+              <col style="width: 35%;">
+            
+            
+            </colgroup>
+              <thead class="text-white table-success">
+                <tr>
+                  <th scope="col">Nro</th>
+                  <th scope="col">FECHA</th>
+                  <th scope="col">PLACA</th>                               
+                  <th scope="col">CONDICION</th>
+                  <th scope="col">NOMBRE_RESOLUCION</th>
+                  <th scope="col">EMPRESA</th>
+                </tr>
+              </thead>
+  
+              <tbody >
+                <tr *ngFor="let item of historial_vehicular, index as i"  >
+                  
+                 <th scope="row">{{i+1}}</th>
+                  <td>{{item.create_at|date:'dd-MM-yyyy'}}</td>
+                  <td>{{item.placa}}</td>
+                  <td>{{item.condicion}}</td>
+                  <td>{{item.nombre_resolucion}}</td>
+                  <td>{{item.nombre_empresa}}</td>
+                </tr> 
+              </tbody>
+        </table>
+    </div>
+</div> -->
+
+<div class="text-center">
+    <h2 class="titulo_reporte "> Reporte - Historial vehicular</h2>  
+</div>
+<div class="card rounded shadow border-2 ">
+                
+    <div class="card-header  ">
+
+        <div class="py-3 d-flex justify-content-between align-items-center">
+            <!--<h6 class="m-0 font-weight-bold text-primary">Tabla Usuarios</h6>-->
+            <form class="row g-3 ">
+                
+                <div class="col-auto">
+                    <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA" id="placa_vehicular">
+                </div>
+                <div class="col-auto">
+                  <button  class="btn btn-primary " (click)="Buscar_historial_vehicular()">BUSCAR</button>
+                </div>
+            </form>
+            
+        </div>
+
+    </div>
+    <div class="card-body px-5 bg-white rounded">
+        <div [style]="disableInvitado">
+            <button class="btn btn-success mb-2" (click)="ExporToExcel()"><i class="bi bi-file-earmark-excel-fill"></i> Descargar</button>
+        </div>
+        
+      <div class="table-responsive">
+       
+        <table class="table text-center  table-hover" id="excel-table">
+            <colgroup>
+                <col style="width: 5%;">
+                <col style="width: 15%;">
+                <col style="width: 10%;">
+                <col style="width: 10%;">
+                <col style="width: 20%;">
+                <col style="width: 35%;">
+              </colgroup>
+            <thead class="text-white table-success">
+                <tr>
+                  <th scope="col">Nro</th>
+                  <th scope="col">FECHA</th>
+                  <th scope="col">PLACA</th>                               
+                  <th scope="col">CONDICION</th>
+                  <th scope="col">NOMBRE_RESOLUCION</th>
+                  <th scope="col">EMPRESA</th>
+                </tr>
+              </thead>
+  
+              <tbody >
+                <tr *ngFor="let item of historial_vehicular, index as i"  >
+                  
+                 <th scope="row">{{i+1}}</th>
+                  <td>{{item.fecha_resolucion|date:'dd-MM-yyyy'}}</td>
+                  <td>{{item.placa}}</td>
+                  <td>{{item.condicion}}</td>
+                  <td>{{item.nombre_resolucion}}</td>
+                  <td>{{item.nombre_empresa}}</td>
+                </tr> 
+              </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

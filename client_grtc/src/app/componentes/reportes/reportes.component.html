@@ -1,0 +1,248 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+
+    <div class="contenedor">
+
+        <div class="row" >
+            <div class="col-lg-3" >
+                <div class="menu-listado-reportes">
+                    <div class="titulo">OTROS REPORTES</div>
+                    <div class="lista">
+                        <div class="item" (click)="showSelectedComponent('reportesVehiculosPorRuta')" ><div class="name"><i class="bi bi-map"></i> Vehiculos por ruta</div></div>
+                    </div>
+                    <div class="lista">
+                        <div class="item" (click)="showSelectedComponent('reportesEmpresasPorRuta')"><div class="name"> <i class="bi bi-geo-alt"></i> Empresas por ruta</div></div>
+                    </div>
+                    <div class="lista">
+                        <div class="item" (click)="showSelectedComponent('reportesVehiculosPorEmpresa')"><div class="name"><i class="bi bi-bus-front"></i> Vehiculos por empresa</div></div>
+                    </div>
+                    <div class="lista">
+                        <div class="item"  (click)="showSelectedComponent('reportesConductores')"><div class="name"><i class="bi bi-person"></i> Conductores y licencias</div></div>
+                    </div>
+                    <div class="lista">
+                        <div class="item" (click)="showSelectedComponent('reportesHistorialVehicular')"><div class="name"> <i class="bi bi-card-list"></i> Historial de un vehiculo por placa</div></div>
+                    </div>
+                </div>
+              
+                
+            </div>
+            <div class="col-lg-9">
+                <div class="presentacion_user ">
+                    <div class="icon-title-container">
+                        <i class="bi bi-card-list icon-custom"></i>
+                        <h2 class="titulo_reporte mx-2"> REPORTES</h2>
+                    </div>
+                    <div class="row">
+                        <!-- EMPRESAS POR SERVICIO-->
+                        <div class="col-xl-3 col-md-6 mb-4 hand_cursor" (click)="showSelectedComponent('reportesEmpresaServicio')">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <i class="bi bi-building-fill icon-custom" style="color: #68b3c8;"></i>
+                                        </div>
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Empresas por Servicio
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ cantidad_empresas_por_tipoServicio && cantidad_empresas_por_tipoServicio.length >= 5 ? cantidad_empresas_por_tipoServicio[4].cantidad_empresas : 'N/A' }}
+                                            </div>
+                                        </div>
+                                        
+                                        <hr>
+                                        
+                                        <div class="data-report" *ngIf="cantidad_empresas_por_tipoServicio && cantidad_empresas_por_tipoServicio.length >= 4">
+                                            <div class="data-report">
+                                                <div *ngFor="let empresa of cantidad_empresas_por_tipoServicio; let i = index">
+                                                    <div *ngIf="i < 4">
+                                                        <h6>{{ empresa.tipo_servicio }}: <samp>{{ empresa.cantidad_empresas }}</samp></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ">
+                                                Empresas por Servicio</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ this.cantidad_empresas_por_tipoServicio[4].cantidad_empresas}}</div>
+                                            
+                                        </div>
+                                        
+                                        <hr>
+                                        <div class="data-report">
+                                            <div><h6>{{ this.cantidad_empresas_por_tipoServicio[0].tipo_servicio}}: <samp>{{ this.cantidad_empresas_por_tipoServicio[0].cantidad_empresas}}</samp></h6></div>
+                                            <div><h6>{{ this.cantidad_empresas_por_tipoServicio[1].tipo_servicio}}:  <samp>{{ this.cantidad_empresas_por_tipoServicio[1].cantidad_empresas}}</samp></h6></div>
+                                            <div><h6>{{ this.cantidad_empresas_por_tipoServicio[2].tipo_servicio}}: <samp>{{ this.cantidad_empresas_por_tipoServicio[2].cantidad_empresas}}</samp></h6></div>
+                                            <div><h6>{{ this.cantidad_empresas_por_tipoServicio[3].tipo_servicio}}: <samp>{{ this.cantidad_empresas_por_tipoServicio[3].cantidad_empresas}}</samp></h6></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- INFRAESTRUCTURA-->
+                        <div class="col-xl-3 col-md-6 mb-4 hand_cursor" (click)="showSelectedComponent('reportesInfraestructura')">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            
+                                            <i class="bi bi-buildings-fill icon-custom" style="color: #eb5e28;"></i>
+                                        </div>
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Infraestructura
+                                            </div>
+                                        
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ cantidad_infraestructura && cantidad_infraestructura.length >= 5 ? cantidad_infraestructura[4].cantidad_infraestructuras : 'N/A' }}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        
+                                        <div class="data-report" *ngIf="cantidad_infraestructura && cantidad_infraestructura.length >= 4">
+                                            <div class="data-report">
+                                                <div *ngFor="let infraestructura of cantidad_infraestructura; let i = index">
+                                                    <div *ngIf="i < 4">
+                                                        <h6>{{ infraestructura.tipo_infraestructura }} : <samp>{{ infraestructura.cantidad_infraestructuras }}</samp></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 ">
+                                                Infraestructura</div>
+                                            
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{cantidad_infraestructura[4].cantidad_infraestructuras}}</div>
+                                        </div>
+                                        <hr>
+                                        <div class="data-report" *ngIf="cantidad_infraestructura && cantidad_infraestructura.length >= 4">
+                                            <div class="data-report">
+                                                <div><h6>{{cantidad_infraestructura[3].tipo_infraestructura}} : <samp>{{cantidad_infraestructura[3].cantidad_infraestructuras}}</samp></h6></div>
+                                                <div><h6>{{cantidad_infraestructura[0].tipo_infraestructura}} : <samp>{{cantidad_infraestructura[0].cantidad_infraestructuras}}</samp></h6></div>
+                                                <div><h6>{{cantidad_infraestructura[1].tipo_infraestructura}} : <samp>{{cantidad_infraestructura[1].cantidad_infraestructuras}}</samp></h6></div>
+                                                <div><h6>{{cantidad_infraestructura[2].tipo_infraestructura}} : <samp>{{cantidad_infraestructura[2].cantidad_infraestructuras}}</samp></h6></div>
+                                                
+                                            </div>
+                                        </div> -->
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- VEHICULOS -->
+                        <div class="col-xl-3 col-md-6 mb-4 hand_cursor"  (click)="showSelectedComponent('reportesVehiculos')">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <i class="bi bi-bus-front icon-custom" style="color: #7ac29a;"></i>
+                                        </div>
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Vehiculos
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ cantidad_vehiculos_servicio && cantidad_vehiculos_servicio.length >= 5 ? cantidad_vehiculos_servicio[4].cantidad_vehiculos : 'N/A' }}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="data-report" *ngIf="cantidad_vehiculos_servicio && cantidad_vehiculos_servicio.length >= 4">
+                                            <div class="data-report">
+                                                <div *ngFor="let vehiculo of cantidad_vehiculos_servicio; let i = index">
+                                                    <div *ngIf="i < 4">
+                                                        <h6>{{ vehiculo.tipo_servicio }} : <samp>{{ vehiculo.cantidad_vehiculos }}</samp></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            <!-- <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Vehiculos</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{this.cantidad_vehiculos_servicio[4].cantidad_vehiculos}}</div>
+                                            </div>
+                                            <hr>
+                                            <div class="data-report">
+                                                <div><h6>{{this.cantidad_vehiculos_servicio[0].tipo_servicio}} : <samp>{{this.cantidad_vehiculos_servicio[0].cantidad_vehiculos}}</samp></h6></div>
+                                                <div><h6>{{this.cantidad_vehiculos_servicio[1].tipo_servicio}} : <samp>{{this.cantidad_vehiculos_servicio[1].cantidad_vehiculos}}</samp></h6></div>
+                                                <div><h6>{{this.cantidad_vehiculos_servicio[2].tipo_servicio}} : <samp>{{this.cantidad_vehiculos_servicio[2].cantidad_vehiculos}}</samp></h6></div>
+                                                <div><h6>{{this.cantidad_vehiculos_servicio[3].tipo_servicio}} : <samp>{{this.cantidad_vehiculos_servicio[3].cantidad_vehiculos}}</samp></h6></div>
+                                            </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- REPORTE DE ESTADO DE EMPRESAS -->
+                        <div class="col-xl-3 col-md-6 mb-4 hand_cursor" (click)="showSelectedComponent('reportesEmpresasEstado')">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <i class="bi bi-clipboard-data icon-custom" style="color: #68b3c8;"></i>
+                                        </div>
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#68b3c8;">
+                                                Estado de empresas</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                        </div>
+                                        <hr>
+                                            <div class="data-report">
+                                               
+                                                <div><h6>EMPRESAS ACTIVAS : <samp>{{this.cantidad_empresas_por_estado.empresas_activas}}</samp></h6></div>
+                                                <div><h6>EMPRESAS EN ALERTA : <samp>{{this.cantidad_empresas_por_estado.empresas_en_alerta}}</samp></h6></div>
+                                                <div><h6>EMPRESAS INACTIVAS : <samp>{{this.cantidad_empresas_por_estado.empresas_de_baja}}</samp></h6></div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+              
+                
+                     
+                  <div *ngIf="showComponent === 'reportesHistorialVehicular'">
+                    <app-reportes-historial-vehicular></app-reportes-historial-vehicular>
+                  </div>
+                  <div *ngIf="showComponent === 'reportesConductores'">
+                    <app-reportes-conductores></app-reportes-conductores>
+                  </div>
+                  <div *ngIf="showComponent === 'reportesEmpresasEstado'">
+                    <app-reportes-empresas-estado></app-reportes-empresas-estado>
+                  </div>
+
+            </div>
+            <div *ngIf="showComponent === 'reportesVehiculosPorRuta'">
+                <app-reportes-vehiculos-por-ruta></app-reportes-vehiculos-por-ruta>
+            </div>
+            <div *ngIf="showComponent === 'reportesEmpresasPorRuta'">
+                <app-reportes-empresas-por-ruta></app-reportes-empresas-por-ruta>
+              </div>
+            <div *ngIf="showComponent === 'reportesVehiculosPorEmpresa'">
+                <app-reportes-vehiculos-por-empresa></app-reportes-vehiculos-por-empresa>
+              </div>
+            <div *ngIf="showComponent === 'reportesEmpresaServicio'">
+                <app-reportes-empresa-servicio></app-reportes-empresa-servicio>
+              </div>
+              <div *ngIf="showComponent === 'reportesInfraestructura'">
+                <app-reportes-infraestructura></app-reportes-infraestructura>
+              </div>
+              <div *ngIf="showComponent === 'reportesVehiculos'">
+                <app-reportes-vehiculos></app-reportes-vehiculos>
+              </div>
+
+            
+        </div>
+    </div>    
+</div>

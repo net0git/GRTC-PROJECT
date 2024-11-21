@@ -1,0 +1,23 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091;
+   
+    
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+.titulo{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #404B5A; 
+}

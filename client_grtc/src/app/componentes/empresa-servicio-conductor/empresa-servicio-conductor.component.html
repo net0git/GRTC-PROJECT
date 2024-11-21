@@ -1,0 +1,117 @@
+<div class="panel">
+  <app-navegador></app-navegador>
+  <div class="fondo-volver container-fluid">
+      <button class="m-2 mx-4 btn-volver" (click)="volver()">
+          <i class="bi bi-arrow-left text-white"> volver </i>
+      </button>
+  </div>
+  <div class="row  d-flex align-items-center presentacion_user ">
+      <div class="col-md-4 vertical-center">
+          <i class="bi bi-person-vcard icon-custom"></i>
+      </div>
+      <div class="col-md-8">
+          <h2 class="titulo">REGISTRO DE CONDUCTORES</h2>                
+      </div>
+  </div>
+
+<div class="contenedor">
+    <div class="row"> 
+        <div class="col-md-5 ">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                    <!-- DATOS DEL PERSONALES -->
+                    <fieldset>
+                        <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="nombre"  [(ngModel)]="data_persona.nombres" placeholder="Nombre(s)"  (ngModelChange)="data_persona.nombres= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="ap_paterno"   [(ngModel)]="data_persona.ap_paterno" placeholder="Apellido Paterno"  (ngModelChange)="data_persona.ap_paterno= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="ap_materno"  [(ngModel)]="data_persona.ap_materno" placeholder="Apellido Materno" (ngModelChange)="data_persona.ap_materno= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group ">
+                        <input type="email" class="form-control texto-form-minuscula" name="correo" [(ngModel)]="data_persona.correo" placeholder="correo">
+                        </div>
+                        <div class="form-group mb-3">
+                        <label for="documento_id" class="form-label mt-3">Documento de Identidad:</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select id="tipo_doc" name="tipo_doc" class="form-control form-select"  [(ngModel)]="data_persona.tipo_doc">
+                                    <option value="">TIPO DE DOCUMENTO </option>
+                                    <option value="CE">CARNET DE ESTRANGERIA</option>
+                                    <option value="DNI">DNI</option>     
+                                </select>
+                        </div>
+                            
+                            <div class="col-sm-6">
+                                <input type="text" min="0" class="form-control" name="documento_id" [(ngModel)]="data_persona.documento">
+                            </div>
+
+                        </div>
+                        
+                        </div>
+                        <div class="form-group mb-3">
+                        <input type="number" min="0" class="form-control" name="telefono" [(ngModel)]="data_persona.telefono" placeholder="Telefono/cel">
+                        </div>
+                        <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="licencia" [(ngModel)]="data_conductor.nro_licencia" placeholder="Licencia" (ngModelChange)="data_conductor.licencia= convertirAMayusculas($event)">
+                        </div>
+                        <div class="form-group ">
+                          <select id="categoria" name="categoria" class="form-control form-select"  [(ngModel)]="data_conductor.categoria">
+                            <option value="">CATEGORIA </option>
+                            <option value="A-I">A-I</option>
+                            <option value="A-IIa">A-IIa</option>   
+                            <option value="A-IIb">A-IIb</option>
+                            <option value="A-IIIa">A-IIIa</option>
+                            <option value="A-IIIb">A-IIIb</option>
+                            <option value="A-IIIc">A-IIIc</option>
+                        
+                        </select>
+                        </div>
+                          
+                        
+                    </fieldset>
+                  <div class="d-grid gap-2 mt-2">
+                    <button [class]="claseBoton" type="button" (click)="validarFormulario()">{{titulo_boton}}</button>
+                  </div>
+                  <div class="d-grid gap-2 mt-2">
+                    <button class="btn btn-secondary btn-lg m-0" type="button" (click)="limpiarFormulario()">limpiar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-7 text-center">
+            <table class="table text-center  table-hover">
+                <thead class="thead-ligth bg-secondary text-white table-success">
+                  <tr >
+                    <th scope="col">Nro</th>
+                    <th scope="col">Nombre y Apellidos</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Licencia</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Eliminar</th>
+
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let item of listaConductores, index as i"  (dblclick)="obtenerValoresPorIdConductor(item.id_conductor)" >
+                    
+                    <th scope="row">{{i+1}}</th>
+                    
+                      <td>{{ item.nombres + ' ' + item.ap_paterno + ' ' +item.ap_materno}}</td>
+                      <td>{{item.documento}}</td>
+                     
+                      <td>{{item.nro_licencia}}</td>
+                      <td>{{item.categoria}}</td>
+                      <td><i class="bi bi-trash3-fill"  (click)="mensajeEliminarConductor(item.id_persona,item.id_conductor)"></i> </td>
+                                          
+                  </tr> 
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
+</div>

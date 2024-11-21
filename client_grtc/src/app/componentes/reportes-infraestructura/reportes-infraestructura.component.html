@@ -1,0 +1,66 @@
+<div class="text-center">
+    <h2 class="titulo_reporte "> Reporte de infraestructuras</h2>  
+</div>
+
+<div class="center-container ">
+  <div class="chartContainer">
+    <apx-chart [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels" [dataLabels]="chartDataLabels" ></apx-chart>
+  </div>
+</div>
+
+<div class="card rounded shadow border-2 ">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center ">
+      
+        <select id="tipo_doc" name="tipo_doc" class="form-control mx-4" (change)="seleccionarTipoInfraestructura($event)">
+          <option value="">SELECCIONES TIPO DE TRASPORTE </option>
+          <option value="1">TERMINALES TERRESTRES</option>
+          <option value="2">ESTACIONES DE RUTA DE TIPO I</option>
+          <option value="3">ESTACIONES DE RUTA DE TIPO II</option>
+          <option value="4">ESTACIONES DE RUTA DE TIPO  III</option>        
+      </select>
+        <input type="text" class="form-control" name="buscar" placeholder="BUSCAR" (input)="buscarEnObjeto($event)">        
+    </div>
+    <div class="card-body px-4 bg-white rounded">
+      <div class="table-responsive px-4">
+        <!-- <button type="button" class="btn btn-success mb-3"  (click)="AgregarUsuario()">+add</button> -->
+        <div class="form-group">
+            <div class="row">
+                <div  [style]="disableInvitado">
+                    <button class="btn btn-success mb-2" (click)="ExporToExcel()" ><i class="bi bi-file-earmark-excel-fill"></i> Descargar</button>
+                </div>
+                <table class="table text-center  table-hover" id="excel-table">
+                    <thead class="thead-ligth bg-secondary text-white table-success">
+                      <tr >
+                        <th scope="col">Nro</th>
+                        <th scope="col">TIPO</th>
+                        <th scope="col">INFRAESTRUCTURA</th>
+                        <th scope="col">DIRECCION</th>
+                        <th scope="col">DISTRITO</th>
+                        <th scope="col">PROVINCIA</th>
+                        <th scope="col">DEPARTAMENTO</th>
+                        <th scope="col">RESOLUCION</th>
+                        <th scope="col">FECHA</th>
+
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor="let item of Infraestructura, index as i"  >
+                        
+                       <th scope="row">{{i+1}}</th>
+                         <td>{{item.tipo_infraestructura}}</td>
+                         <td>{{item.nombre_infraestructura}}</td>
+                         <td>{{item.direccion}}</td> 
+                         <td>{{item.distrito}}</td>
+                         <td>{{item.provincia}}</td>
+                         <td>{{item.departamento}}</td>
+                         <td>{{item.nombre_resolucion}}</td>
+                         <td>{{item.fecha_act| date:'dd-MM-yyyy'}}</td>
+                        
+                      </tr> 
+                    </tbody>
+                </table> 
+            </div>        
+        </div>
+      </div>
+    </div>
+  </div>

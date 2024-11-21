@@ -1,0 +1,151 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="container-fluid">
+        <div class="row  d-flex align-items-center presentacion_empresa_servicio offset-md-3">
+            <div class="col-md-4 vertical-center">
+                <i class="bi bi-building-fill  icon-custom"></i>
+            </div>
+            
+            <div class="col-md-8">
+                <h2 class="titulo_empresa_servicio">{{titulo}}</h2>
+            </div>
+    </div>
+    <div class="row">
+    
+    <div class="col-md-8 col-lg-8 col-xl-6 offset-md-3">
+ 
+        <form>
+            <h3 class="subtitulo_empresa">DATOS DE LA EMPRESA:</h3>
+            <!-- DATOS DE LA EMPRESA-->
+            <fieldset>
+                <div class="col-sm-6">
+                    <label for="tipo_empresa_servicio" class="form-label mt-2" >Tipo de servicio:</label>
+                    <select id="tipo_empresa_servicio" name="tipo_empresa_servicio" class="form-control"  [(ngModel)]="data_empresa_servicio.id_tipo_servicio" disabled="true">
+                            <option value=0>TIPO SERVICIO </option>
+                            <option value=1>TRANSPORTE DE PERSONAS</option>
+                            <option value=2>TRANSPORTE TURISTICO</option>
+                            <option value=3>TRANSPORTE DE TRABAJADORES</option>
+                            <option value=4>TRANSPORTE DE ESTUDIANTES</option>   
+                    </select>
+               </div>
+              <div class="form-group">
+                <label for="ruc_empresa" class="form-label mt-3" >RUC:</label>
+                <div class="col-md-6">
+                  <input id="ruc_empresa" type="text" class="form-control" name="ruc_empresa" placeholder="Ingrese el RUC de la empresa" [(ngModel)]="data_empresa.ruc" disabled="true">
+              </div>
+               
+              </div>
+              <div class="form-group">
+                <label for="nombre_empresa" class="form-label mt-2" >Razon Social:</label>
+                <input id="nombre_empresa" type="text" class="form-control" name="nombre_empresa" [(ngModel)]="data_empresa.razon_social"  style="text-transform:uppercase;">
+              </div>
+              <div class="form-group">
+                <label for="direccion_empresa" class="form-label mt-3" >Direccion:</label>
+                <input id="direccion_empresa" type="text" class="form-control" name="direccion_empresa"   [(ngModel)]="data_empresa.direccion"  style="text-transform:uppercase;"> 
+              </div>
+              <div class="form-group">
+                <label for="correo_empresa" class="form-label mt-3" >Correo:</label>
+                <input type="email" class="form-control" name="correo_empresa"  [(ngModel)]="data_empresa.correo" >
+              </div>
+              <div class="form-group">
+                <label for="telefono_empresa" class="form-label mt-3" >Telefono:</label>
+                <input type="text" class="form-control" name="telefono_empresa"  [(ngModel)]="data_empresa.telefono" >
+              </div>
+              <div class="form-group mb-4">
+               
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="departamento_empresa" class="form-label mt-3">Departamento:</label>
+                        <select id="departamento_empresa" name="departamento_empresa" class="form-control form-select" (change)="onDepartamentoChange()" [(ngModel)]="data_empresa.departamento" >
+                            <option value="">DEPARTAMENTO </option>
+                            <option *ngFor="let departamento of departamentos" [value]="departamento">{{ departamento }}</option>
+                                 
+                        </select>
+                   </div>
+                    
+                    <div class="col-sm-4">
+                        <label for="provincia_empresa" class="form-label mt-3">Provincia:</label>
+                        <select id="provincia_empresa" name="provincia_empresa" class="form-control form-select" (change)="onProvinciaChange()" [(ngModel)]="data_empresa.provincia" [disabled]="!data_empresa.departamento">
+                            <option value="">PROVINCIA</option>
+                            <option *ngFor="let provincia of provincias" [value]="provincia">{{ provincia }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" >
+                        <label for="distrito_empresa" class="form-label mt-3">Distrito:</label>
+                        <select id="distrito_empresa" name="distrito_empresa" class="form-control form-select" [disabled]="!data_empresa.provincia"  [(ngModel)]="data_empresa.distrito">
+                            <option value="">DISTRITO</option>
+                            <option *ngFor="let distrito of distritosPorProvincia" [value]="distrito">{{ distrito }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-1">
+                        <label for="fecha_empresa" class="form-label mt-3">Fecha de Autorización:</label>
+                        <input id="fecha_empresa" type="date" class="form-control" name="fecha_resolucion" [(ngModel)]="data_empresa_servicio.fecha_inicial">
+                    </div>
+                    <div class="form-group">
+                        <label for="expediente_empresa" class="form-label mt-3" >Expediente:</label>
+                        <input id="expediente_empresa" type="text" class="form-control" name="expediente_empresa" [(ngModel)]="data_empresa_servicio.expediente"   inputmode="uppercase">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="expediente_empresa" class="form-label mt-3" >Expediente:</label>
+                        <input type="text" class="form-control" name="expediente_empresa"  >
+                    </div> -->
+                </div>
+                
+              </div>
+              <!-- DATOS DEL REPRESENTANTE DE LA EMPRESA -->
+              <h4 class="subtitulo_empresa">REPRESENTANTE LEGAL:</h4>
+              <div class="form-group">
+                <label for="nombre_representante" class="form-label mt-2" >Nombres:</label>
+                <input id="nombre_representante" type="text" class="form-control" name="nombre_representante" [(ngModel)]="data_persona.nombres" style="text-transform:uppercase;" >
+              </div>
+              <div class="form-group">
+                <label for="ap_paterno" class="form-label mt-3" >Apellido Paterno:</label>
+                <input id="ap_paterno" type="text" class="form-control" name="ap_paterno" [(ngModel)]="data_persona.ap_paterno" style="text-transform:uppercase;">
+              </div>
+              <div class="form-group">
+                <label for="ap_materno" class="form-label mt-3" >Apellido Materno:</label>
+                <input id="ap_materno" type="text" class="form-control" name="ap_materno"  [(ngModel)]="data_persona.ap_materno" style="text-transform:uppercase;">
+              </div>
+              <div class="form-group">
+                <label for="correo_representante" class="form-label mt-3" >Correo:</label>
+                <input type="email" class="form-control" name="correo_representante" [(ngModel)]="data_persona.correo">
+              </div>
+              <div class="form-group">
+                <label for="documento_id" class="form-label mt-3" >Documento de Identidad:</label>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select id="tipo_doc" name="tipo_doc" class="form-control"  [(ngModel)]="data_persona.tipo_doc" >
+                            <option value="">TIPO DE DOCUMENTO </option>
+                            <option value="CE">CARNET DE ESTRANGERIA</option>
+                            <option value="DNI">DNI</option>     
+                        </select>
+                   </div>
+                    
+                    <div class="col-sm-6">
+                        <input id="documento_id" type="text" class="form-control" name="documento_id" [(ngModel)]="data_persona.documento" >
+                    </div>   
+                </div>   
+              </div>
+              <div class="form-group">
+                <label for="telefono_representante" class="form-label mt-3" >Telefono:</label>
+                <input type="text" class="form-control" name="telefono_representante" [(ngModel)]="data_persona.telefono">
+              </div>
+
+            </fieldset>
+        </form>
+    
+        <div class="d-grid gap-2">
+            <button [class]="claseBoton" type="button"  style="color: #292b2dbd; font-weight: bold;" (click)="validarFormulario()">{{titulo_boton}}</button>
+            <br>
+          </div>
+        </div>
+    </div>
+    
+    
+    </div>
+</div>

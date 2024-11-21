@@ -1,0 +1,85 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="row  d-flex align-items-center presentacion_user ">
+        <div class="col-md-4 vertical-center">
+            <i class="bi bi-person-vcard icon-custom"></i>
+        </div>
+        <div class="col-md-8">
+            <h2 class="titulo">ITINERARIO DE RUTAS</h2>                
+        </div>
+    </div>
+ 
+  <div class="contenedor">
+
+    <div class="row"> 
+      <div class="col-md-5 ">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                  <!-- DATOS DEL PERSONALES -->
+                  <fieldset>
+                    <div class="form-group ">
+                          <label for="origen_itinerario" class="form-label ">Origen:</label>
+                          <input type="text" class="form-control" name="origen_itinerario" [(ngModel)]="data_itinerario.origen" (ngModelChange)="data_itinerario.origen= convertirAMayusculas($event)">
+                    </div>
+                    <div class="form-group ">
+                      <label for="destino_itinerario" class="form-label mt-3">Destino:</label>
+                      <input type="text" class="form-control" name="destino_itinerario"  [(ngModel)]="data_itinerario.destino" (ngModelChange)="data_itinerario.destino= convertirAMayusculas($event)">
+                   </div>
+                   <div class="form-group ">
+                      <label for="itinerario" class="form-label mt-3 ">Itinerario:</label>
+                      <textarea class="form-control" name="itinerario" rows="4" [(ngModel)]="data_itinerario.itinerario"  (ngModelChange)="data_itinerario.itinerario= convertirAMayusculas($event)"></textarea>
+                    </div>
+                    <div class="form-group ">
+                        <label for="frecuencia" class="form-label mt-3 ">Frecuencia:</label>
+                        <input type="text" class="form-control" name="frecuencia" [(ngModel)]="data_itinerario.frecuencia"  (ngModelChange)="data_itinerario.frecuencia= convertirAMayusculas($event)">
+                    </div>
+                     
+                </fieldset>
+                <div class="d-grid gap-2 mt-2">
+                  <button [class]="claseBoton" type="button" (click)="validarFormularioItinerario()" >{{titulo_boton}}</button>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                  <button class="btn btn-lg btn-secondary text-white" type="button" (click)="limpiarFormulario()">limpiar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-7 text-center">
+          <table class="table text-center  table-hover">
+              <thead class="thead-ligth bg-secondary text-white table-success">
+                <tr >
+                  <th scope="col">Nro</th>
+                  <th scope="col">Origen </th>
+                  <th scope="col">Destino</th>
+                  <th scope="col">Itinerario</th>
+                  <th scope="col">Frecuencia</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of listaItinerarios, index as i"   (dblclick)="ObtenerDetalleItinerario(item.id_detalle_ruta_itinerario)" >
+                  
+                  <th scope="row">{{i+1}}</th>
+                  
+                    <td>{{item.origen }}</td>
+                    <td>{{item.destino}}</td>
+                    <td>{{item.itinerario}}</td>           
+                    <td>{{item.frecuencia}}</td>
+                    <td><i class="bi bi-trash3-fill"  (click)="EliminarItinerario(item.id_detalle_ruta_itinerario)"></i> </td>
+            
+                </tr> 
+              </tbody>
+          </table> 
+      </div>
+  </div>
+
+    
+  </div>
+  </div>

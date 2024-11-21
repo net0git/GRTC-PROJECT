@@ -1,0 +1,118 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+.presentacion_company{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.icon-custom {
+    font-weight: bold; 
+    font-size: 3.5rem;
+    color: #929FB1;
+}
+.icon-custom_gear{
+    color:rgba(49, 49, 49, 0.452);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 30px;
+}
+.icon-custom_gear:hover{
+    color:rgba(8, 81, 159, 0.897);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 30px;
+}
+/* panel del boton resolucon */
+.panel-resolucion{
+    margin: 0px 12px;
+ }
+
+.titulo_empresa{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #404B5A;
+}
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091;
+   
+    
+}
+
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+/* modificar el texto de resolucion cuando pasa el cursor */
+.text_documento:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+ /* nuevo boton resolucion*/
+ .my-button_resolucion {
+    padding: 8px 16px;
+    margin-right: 10px;
+    /* background-color: #4CAF50; */
+    background-color: rgb(219, 62, 60);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .my-button_resolucion:hover {
+    background-color: #b02b2b;
+    cursor: pointer;
+  }
+  .my-button_resolucion:active {
+    background-color:  #b02b2b;
+  }
+
+   /* nuevo boton resolucion*/
+   .my-button_certificado {
+    padding: 8px 16px;
+    margin-right: 10px;
+     background-color: #4CAF50; 
+
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .my-button_certificado:hover {
+    background-color: #45a049;
+    cursor: pointer;
+  }
+  .my-button_certificado:active {
+    background-color: #3e8e41;
+  }
+
+  /* nuevo boton agregar resolucion*/
+  .my-button_ingreso {
+    padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    background-color:  rgba(142, 140, 133, 0.315);
+    color:rgb(38, 37, 37);
+    border: none;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    border-top-right-radius:10px;
+    border-top-left-radius: 10px;
+  }
+  .my-button_ingreso:hover {
+    background-color: rgba(142, 140, 133, 0.681);
+    color: aliceblue;
+    cursor: pointer;
+  }
+  .my-button_ingreso:active {
+    background-color: rgba(142, 140, 133, 0.724);
+  }

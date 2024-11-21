@@ -1,0 +1,17 @@
+ /* pie chart */
+ .chartContainer {
+    width: 500px;
+    height: 270px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+   
+}

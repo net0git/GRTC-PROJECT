@@ -1,0 +1,239 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+    <div class="row  d-flex align-items-center presentacion_user ">
+        <div class="col-md-4 vertical-center">
+            <i class="bi bi-person-vcard icon-custom"></i>
+        </div>
+        <div class="col-md-8">
+            <h2 class="titulo">REGISTRO DE VEHICULOS</h2>                
+        </div>
+    </div>
+     <div class="contenedor">
+        <div class="row"> 
+            <div class="col-md-8 ">
+                <div class="card">
+                    <div class="card-body">
+                      <form>
+                         
+                          <fieldset>
+                              
+                              <div class="form-group mb-2">
+                                 
+                                  <div class="row">
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="Placa" class="form-label">Placa:</label>
+                                          <div class="row">
+                                            
+                                            <div class="col-sm-8 pr-0 mr-0" > <!-- Divide el espacio en 8 columnas para el input -->
+                                              <input id="placa" type="text" class="form-control" name="placa" [(ngModel)]="data_vehiculo.placa" (input)="controllerNull($event)" [disabled]="deshabilitarplaca"  (ngModelChange)="data_vehiculo.placa=convertirAMayusculas($event)">
+                                            </div>
+                                            <div class="col-sm-4 pl-0 ml-0"> <!-- Divide el espacio en 4 columnas para el botón -->
+                                                <button class="btn btn-primary" (click)="buscarVehiculoPorPlaca(data_vehiculo.placa)"  [disabled]="deshabilitarbuscador" ><i class="bi bi-search"></i></button>
+                                            </div>
+                                            
+                                          </div>
+                                          
+                                          
+                                      </div>
+                                       
+                                      
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="anio" class="form-label">Año:</label>
+                                          <input type="number" class="form-control" name="anio"  min="1900" max="2100" [(ngModel)]="data_vehiculo.anio_fabricacion" [disabled]="deshabilitarfrom" (input)="limitarLongitud($event)">
+                                      </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-3 ">
+                                          <label for="nro_registro" class="form-label">Nro de Partida Registral:</label>
+                                          <input type="text" class="form-control" name="nro_registro" [(ngModel)]="data_vehiculo.nro_part_reg" [disabled]="deshabilitarfrom" >
+                                      </div>
+  
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="Condicion" class="form-label">Condicion:</label>
+                                          <select id="Condicion" name="condicion" class="form-control"  [(ngModel)]="data_vehiculo.estado" [disabled]="deshabilitarfrom">
+                                              <option value="">CONDICION </option>
+                                              <option value="AUTORIZACION">AUTORIZACION</option>
+                                              <option value="INCREMENTO">INCREMENTO</option>
+                                              <option value="SUSTITUCION">SUSTITUCION</option>    
+                                              <option value="RENOVACION">RENOVACION</option>   
+                                              <!-- [disabled]="deshabilitarRenovacion" -->
+                                          </select>
+                                      </div>
+          
+                                  </div>
+                                  
+                              </div>
+  
+                              <div class="form-group mb-2">
+                                 
+                                  <div class="row">
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="peso" class="form-label">Peso Neto(Tn):</label>
+                                          <input type="number" class="form-control" name="peso" min="0" [(ngModel)]="data_vehiculo.peso" [disabled]="deshabilitarfrom">
+                                      </div>
+                                       
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="carga" class="form-label">Carga Util(Tn):</label>
+                                          <input type="number" class="form-control" name="carga" min="0" [(ngModel)]="data_vehiculo.carga" [disabled]="deshabilitarfrom">
+                                      </div>
+          
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="carroceria" class="form-label">Carroceria:</label>
+                                          <input type="text" class="form-control" name="carroceria"  [(ngModel)]="data_vehiculo.carroceria" [disabled]="deshabilitarfrom" (ngModelChange)="data_vehiculo.carroceria=convertirAMayusculas($event)">
+                                      </div>
+                                       
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="categoria" class="form-label">Categoria:</label>
+                                          <select id="Categoria" name="categoria" class="form-control" [(ngModel)]="data_vehiculo.categoria" [disabled]="deshabilitarfrom">
+                                            <option value="">CATEGORÍA</option>
+                                            <option value="L">L</option>
+                                            <option value="L1">L1</option>
+                                            <option value="L2">L2</option>
+                                            <option value="L3">L3</option>
+                                            <option value="L4">L4</option>
+                                            <option value="L5">L5</option>
+                                            <option value="M">M</option>
+                                            <option value="M1">M1</option>
+                                            <option value="M3">M3</option>
+                                            <option value="M2-C1">M2-C1</option>
+                                            <option value="M2-C2">M2-C2</option>
+                                            <option value="M2-C3">M2-C3</option>
+                                            <option value="M3-C1">M3-C1</option>
+                                            <option value="M3-C2">M3-C2</option>
+                                            <option value="M3-C3">M3-C3</option>
+                                            <option value="N">N</option>
+                                            <option value="N1">N1</option>
+                                            <option value="N2">N2</option>
+                                            <option value="N3">N3</option>
+                                          </select>
+                                          
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+                              <div class="form-group mb-2">
+                                 
+                                  <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-3">
+                                        <label for="serie" class="form-label">Nro Serie:</label>
+                                        <input type="text" class="form-control" name="serie"  [(ngModel)]="data_vehiculo.serie" [disabled]="deshabilitarfrom">
+                                    </div>
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="chasis" class="form-label">Nro chasis/VIN:</label>
+                                          <input type="text" class="form-control" name="chasis" [(ngModel)]="data_vehiculo.nro_chasis" [disabled]="deshabilitarfrom">
+                                      </div>
+                                       
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="asientos" class="form-label">Nro Asientos:</label>
+                                          <input type="number" class="form-control" name="asientos" min="0" [(ngModel)]="data_vehiculo.nro_asientos" [disabled]="deshabilitarfrom">
+                                      </div>
+                                       
+                                      <div class="col-sm-12 col-md-6 col-lg-3">
+                                          <label for="modalidad" class="form-label">modalidad:</label>
+                                          <!-- <input type="text" class="form-control" name="modalidad"  [(ngModel)]="data_vehiculo.modalidad" [disabled]="deshabilitarfrom"> -->
+                                          <select id="modalidad" type="text" class="form-control" name="modalidad"  [(ngModel)]="data_vehiculo.modalidad" [disabled]="deshabilitarfrom">
+                                            <option value="">MODALIDAD </option>
+                                            <option value="ESTANDAR">ESTANDAR</option>
+                                            <option value="DIFERENCIADO">DIFERENCIADO</option> 
+                                        </select>
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+                             
+                              <div class="form-group mb-2">
+    
+                                  <div class="row">
+                                      <div class="col-sm-6">
+                                          <label for="marca" class="form-label">Marca:</label>
+
+                                          <select id="marca" name="marca" class="form-control select-reverse" [(ngModel)]="marcaSeleccionada" (change)="onMarcaSeleccionada()" (click)="obtenerListaMarca()" [disabled]="deshabilitarfrom">
+                                            <option value="0">MARCA</option>
+                                            <option *ngFor="let marca of lista_marca" [value]="marca.id_marca">{{marca.nombre_marca}}</option>
+                                          </select>
+                                      </div>
+                                       
+                                      <div class="col-sm-6">
+                                          <label for="modelo" class="form-label">Modelo:</label>
+                                          <select id="modelo" name="modelo" class="form-control select-reverse" [(ngModel)]="modeloSeleccionado"  (change)="onModeloSeleccionada()" [disabled]="!marcaSeleccionada">
+                                            <option value="0">MODELO</option>
+                                            <option *ngFor="let modelo of lista_modelo" [value]="modelo.id_modelo" >{{modelo.nombre_modelo}}</option>
+                                          </select>
+                                      </div>
+          
+                                  </div>
+                              </div>
+                              <div class="form-group mb-2">
+                                  <label for="color" class="form-label">Color(es):</label>
+                                  <input type="text" class="form-control" name="color" [(ngModel)]="data_vehiculo.color" [disabled]="deshabilitarfrom" (ngModelChange)="data_vehiculo.color=convertirAMayusculas($event)">
+                              </div>
+
+                              <div class="form-group mb-2">
+                                  <label for="itinerario" class="form-label">Itinerario:</label>
+                                  <select id="itinerario" name="itinerario" class="form-control select-reverse" [(ngModel)]="data_vehiculo.id_detalle_ruta_itinerario" [disabled]="deshabilitarfrom">
+                                    <option value=0>ITINERARIO</option>
+                                    <option *ngFor="let itinerario of lista_itinerario" [value]="itinerario.id_detalle_ruta_itinerario">{{itinerario.itinerario}}</option>
+                                  </select>
+    
+                              </div>
+                              <div class="form-group mb-2">
+                                  <label for="resolucion" class="form-label">Resolución:</label>
+                                  <select id="resolucion" name="resolucion" class="form-control select-reverse" [(ngModel)]="data_vehiculo.id_resolucion" [disabled]="deshabilitarfrom">
+                                      <option value=0>RESOLUCIÓN </option>
+                                      <option *ngFor="let resolucion of lista_resoluciones" [value]="resolucion.id_resolucion"  >{{resolucion.nombre_resolucion}}</option>
+                                  </select>
+                              </div>
+                          </fieldset>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                                <!-- modificar?ModificarVehiculo():validarDatosFormulario() -->
+                              <button [class]="claseBoton" type="button" class="w-100" (click)="validarDatosFormulario()" [disabled]="deshabilitarfrom">{{titulo_boton}}</button>
+                            </div>
+                            <div class="col-md-6">
+                              <button class="btn btn-lg btn-secondary mt-3 text-white w-100" type="button" (click)="limpiarCampos() " [disabled]="deshabilitarfrom">Limpiar</button>
+                            </div>
+                          </div>
+                          
+                        <!-- <div class="d-grid gap-2 mt-2">
+                          <button [class]="claseBoton" type="button">{{titulo_boton}}</button>
+                          <button class="btn btn-secondary btn-lg m-0" type="button" >limpiar</button>
+                        </div> -->
+                        <!-- <div class="d-grid gap-2 mt-2">
+                          <button class="btn btn-secondary btn-lg m-0" type="button" >limpiar</button>
+                        </div> -->
+                      </form>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="text-center">
+                    <table class="table text-center  table-hover">
+                        <thead class="thead-ligth bg-secondary text-white table-success">
+                          <tr >
+                            <th scope="col">Nro</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">condicion</th>      
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <tr *ngFor="let vehiculo of lista_vehiculos, index as i" (dblclick)="obtenerValoresPorIdVehiculo(vehiculo.id_vehiculo)"  >
+                      
+                                <th scope="row">{{i+1}}</th>
+                                
+                                
+                                  <td>{{vehiculo.placa}}</td>
+                                  <td>{{vehiculo.estado}}</td>           
+                                                                                       
+                              </tr> 
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div> 
+
+</div>

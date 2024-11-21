@@ -1,0 +1,45 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+.presentacion_car{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+}
+.icon-custom {
+   
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 3.5rem;
+    color: #929FB1;
+}
+.titulo_vehiculo{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    padding-top: 5px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #404B5A;    
+}
+
+/* boton volver */
+.btn-volver{
+    background-color:  #176091;
+    border-radius: 5px;
+    border-color: #176091; 
+}
+.fondo-volver{
+    background-color: #73bced2c;
+}
+
+/* card-header  */
+.card-header {
+    background-color: rgba(5, 5, 5, 0.141);
+}
+
+/* panel de marca y modelo */
+.car_body_panel{
+    background-color: rgba(227, 211, 191, 0.391);
+}

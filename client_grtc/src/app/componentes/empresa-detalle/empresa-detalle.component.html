@@ -1,0 +1,453 @@
+<div class="panel">
+    <app-navegador></app-navegador>
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver" (click)="volver()">
+            <i class="bi bi-arrow-left text-white"> volver </i>
+        </button>
+    </div>
+
+    <div class="row mx-4">
+        <div class="col-sm-12 col-md-12 col-lg-7">
+            <div class="container-fluid">
+                <!-- presentacion -->
+                <div class="presentacion_company ">
+                    <div class="col-md-1 d-flex justify-content-end ">
+                        <i class="bi bi-building-fill icon-custom"></i>
+                    </div>                    
+                    <div class="col-md-11 px-md-2">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <h2 class="titulo_empresa">{{empresa_detalle.razon_social}}</h2>
+                            <h5 class="subtitulo_empresa">{{empresa_detalle.tipo_servicio}} </h5>
+                            </div>
+                            <div class="col-sm-1" [style]="disableInvitado">
+                                <i class="bi bi-gear icon-custom_gear" title="Modificar Empresa" (click)="ModificarEmpresa()" ></i>
+                            </div>
+                        </div>                               
+                    </div>
+                </div>
+            <hr>
+            <div class="container-fluid">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="section1-tab" data-bs-toggle="tab" href="#section1">Datos Empresa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section2">Conductores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section3">Arrendamiento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section4">Itinerario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="section2-tab" data-bs-toggle="tab" href="#section5">Vehiculos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="section3-tab" data-bs-toggle="tab" href="#section6">Historial Vehicular</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="section1">
+                              <div class="row row-titulo">
+                                <div class="col-sm-12 col-md-12 col-lg-5 titulo-empresa"> <h1 class="text-start mt-2">Expediente: {{empresa_detalle.expediente}} </h1></div>
+                                <div class="col-sm-12 col-md-12 col-lg-7">
+                                  <div class="text-start">
+                                    <h5 class="titulo-estado">{{empresa_detalle.estado}}</h5>
+                                  </div>
+                                  
+                                  <div class="progress progress-sm ">
+                                    
+                                    <div class="progress-bar"
+                                    [ngClass]="{ 
+                                      'bg-info bg-opacity-75': empresa_detalle.estado === 'Activo',
+                                      'bg-secondary  bg-opacity-50': empresa_detalle.estado === 'Inactivo',
+                                      'bg-warning bg-opacity-75': empresa_detalle.estado === 'Alerta'
+                                    }"
+                                    role="progressbar" [style.width]="empresa_detalle.porcentaje + '%'"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                              </div>
+
+                                <ul class="text-start">
+                                
+                                    <li><strong>Razón Social:</strong> {{empresa_detalle.razon_social}}</li>
+                                    <li><strong>RUC:</strong> {{empresa_detalle.ruc}}</li>
+                                    <li><strong>Dirección:</strong> {{empresa_detalle.direccion}}</li>
+                                    <li><strong>Correo:</strong> {{empresa_detalle.correo}}</li>
+                                    <li><strong>Teléfono:</strong> {{empresa_detalle.telefono}}</li>
+                                    <li><strong>Distrito:</strong> {{empresa_detalle.distrito}}</li>
+                                    <li><strong>Provincia:</strong> {{empresa_detalle.provincia}}</li>
+                                    <li><strong>Departamento:</strong> {{empresa_detalle.departamento}}</li>
+                                    <li><strong>Periodo de vigencia:</strong> {{empresa_detalle.fecha_inicial| date:'dd/MM/yyyy'}} - {{empresa_detalle.fecha_final| date:'dd/MM/yyyy'}}</li>
+                                    <li><strong>Representante legal:</strong> {{empresa_detalle.representante_legal}}</li>
+                                    <li><strong>Doc. de autorizacion:</strong> {{ultimaResolucionAutorizacion}}</li>
+                                
+                                </ul>      
+                                <div class="text-start panel-resolucion">
+
+                                  <button class="my-button_resolucion" type="button" (click)="MostrarUltimaResolucionAutorizacion()"><i class="bi bi-filetype-pdf icon-custom-pdf"> </i> ver resolucion </button>
+                                  <button class="my-button_reporte" (click)="generatePDFreporte()"><i class="bi bi-clipboard-data icon-custom-pdf"></i> Generar Reporte</button>
+     
+                                </div>  
+                                <div class="container mt-4">
+                                  <div [style]="disableInvitadoTitle">  
+                                    <h5 >Resoluciones</h5>
+                                </div>
+                                  <div class="mb-0 "  [style]="disableInvitadoResolucion">
+                                    
+                                      <button class="my-button_ingreso_resolucion" (click)="IngresarResolucion(empresa_detalle.id_empresa_servicio)"> <i class="bi bi-arrow-down-square"></i> agregar Resolucion</button>
+                                      
+                                      
+                                  </div>                                  
+                                  <table class="table table-bordered table-striped">
+                                      <thead>
+                                          <tr>
+                                              <th>Fecha</th>
+                                              <th>Número</th>
+                                              <th>Año</th>
+                                              <th>Tomo</th>
+                                              <th>Resolución</th>
+                                              <th>Descipción</th>
+                                              <th [style]="disableInvitado">Mod</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr *ngFor="let resolucion of resoluciones_empresa_servicio">
+                                              <td>{{resolucion.fecha_resolucion | date:'dd/MM/yyyy'}}</td>
+                                              <td>{{resolucion.nro_resolucion}}</td>
+                                              <td>{{resolucion.anio_resolucion}}</td>
+                                              <td>{{resolucion.tomo_resolucion}}</td>
+                                              
+                                              <td class="text-primary text_documento" (click)="showDocumentoPdf(resolucion.documento)">{{resolucion.nombre_resolucion}}</td>
+                                              <td>{{resolucion.descripcion}}</td>
+                                              <td [style]="disableInvitado"><img src="assets/imagenes/iconos/modificar_doc.png" width="25px" (click)="ModificarResolucion(empresa_detalle.id_empresa_servicio, resolucion.id_resolucion)"></td>
+                                          </tr>
+                                          
+                                      </tbody>
+                                  </table>
+                              </div>
+                            </div>
+                            <!-- Contenido de la Sección 2: conductores -->
+                            <div class="tab-pane fade" id="section2">
+                                <div class="d-flex mb-2">
+                                    <button type="button" class="btn btn-primary" (click)="RegistrarConductor(empresa_detalle.id_empresa_servicio)" [style]="disableInvitado">+add  <i class="bi bi-nut"></i></button>
+                                </div>
+                                <table class="table text-center  table-hover">
+                                    <thead class="thead-ligth bg-secondary text-white table-success">
+                                      <tr >
+                                        <th scope="col">Nro</th>
+                                        <th scope="col">Nombre y Apellidos</th>
+                                        <th scope="col">DNI/CE</th>
+                                        <th scope="col">Licencia</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col" [style]="disableInvitado">item</th>
+
+                
+                                      </tr>
+                                    </thead>
+                                    <tbody >
+                                      <tr *ngFor="let item of listaConductores, index as i">
+                                       <th scope="row">{{i+1}}</th>
+                                       <td>{{item.ap_paterno + ' ' + item.ap_materno+', '+item.nombres }}</td>
+                                       <td>{{item.documento}}</td>
+                                       <td>{{item.nro_licencia}}</td>
+                                       <td>{{item.categoria}}</td>
+                                       <td [style]="disableInvitado"><i class="bi bi-trash3-fill" (click)="mensajeEliminarConductor(item.id_persona,item.id_conductor)"></i> </td>
+                                      </tr> 
+                                    </tbody>
+                                </table> 
+                                
+                            </div>
+                            <!-- Contenido de la Sección 3: Arrendamiento -->
+                            <div class="tab-pane fade" id="section3">
+                                <div class="d-flex mb-2">
+                                    <button type="button" class="btn btn-primary" [disabled]="disableDetalleEmpresa" (click)="RegistrarContratoArrendamiento(empresa_detalle.id_empresa_servicio)" [style]="disableInvitado">+add  <i class="bi bi-nut"></i></button>
+                                </div>
+                                <table class="table text-center  table-hover">
+                                    <thead class="thead-ligth bg-secondary text-white table-success">
+                                      <tr >
+                                        <th scope="col">Nro</th>
+                                        <th scope="col">Datos Arrendador</th>
+                                        <th scope="col">Propiedad</th>
+                                        <th scope="col">Direccion</th>
+                                        <th scope="col">Fecha incial</th>
+                                        <th scope="col">Fecha final</th>
+                                        <th scope="col" [style]="disableInvitado">Eliminar</th>
+                  
+                                      </tr>
+                                    </thead>
+                                    <tbody >
+                                      <tr *ngFor="let item of listaContratosArrendamiento, index as i"   >
+                                        
+                                        <th scope="row">{{i+1}}</th>
+                                        
+                                          <td>{{item.arrendador}}</td>
+                                          <td>{{item.propiedad}}</td>
+                                          <td>{{item.direccion}}</td>           
+                                          <td>{{item.fecha_inicio | date:'dd/MM/yyyy'}}</td>
+                                          <td>{{item.fecha_fin | date:'dd/MM/yyyy'}}</td>
+                                          <td [style]="disableInvitado"><i class="bi bi-trash3-fill"  (click)="mensajeEliminarContratoArrendamiento(item.id_contrato)" ></i> </td>
+                                                              
+                                      </tr> 
+                                    </tbody>
+                                </table> 
+                            </div>
+                            <!-- Contenido de la Sección 4: Itinerario -->
+                            <div class="tab-pane fade" id="section4">
+                                <div class="d-flex mb-2">
+                                    <button type="button" class="btn btn-primary" [disabled]="disableDetalleEmpresa" (click)="RegistrarItinerario(empresa_detalle.id_empresa_servicio)" [style]="disableInvitado">+add  <i class="bi bi-nut"></i></button>
+                                </div>
+                                <table class="table text-center  table-hover">
+                                  <colgroup>
+                                    <col style="width: 5%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 45%;">
+                                    <col style="width: 25%;">
+                                   
+                                  
+                                  </colgroup>
+                                    <thead class="thead-ligth bg-secondary text-white table-success">
+                                      <tr >
+                                        <th scope="col">Nro</th>
+                                        <th scope="col">Origen </th>
+                                        <th scope="col">Destino</th>
+                                        <th scope="col">Itinerario</th>
+                                        <th scope="col">Frecuencia</th>
+                                        <th scope="col" [style]="disableInvitado">Eliminar</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody >
+                                      <tr *ngFor="let item of listaItinerarios, index as i"   >
+                                        
+                                        <th scope="row">{{i+1}}</th>
+                                        
+                                          <td>{{item.origen }}</td>
+                                          <td>{{item.destino}}</td>
+                                          <td>{{item.itinerario}}</td>           
+                                          <td>{{item.frecuencia}}</td>
+                                          <td [style]="estiloItinearioEminiar" ><i class="bi bi-trash3-fill"  (click)="EliminarItinerario(item.id_detalle_ruta_itinerario)" [style]="disableInvitado"></i> </td>
+                                         
+                                          <!-- <td><i class="bi bi-trash3-fill" ></i> </td> -->
+                                                              
+                                      </tr> 
+                                    </tbody>
+                                </table> 
+                            </div>
+                            <!-- Contenido de la Sección 5: Vehiculos -->
+                            <div class="tab-pane fade" id="section5">
+                                <div class="d-flex mb-2">
+                                    <button type="button" class="btn btn-primary" (click)="RegistrarVehiculo(empresa_detalle.id_empresa_servicio)" [style]="disableInvitado">+add <i class="bi bi-nut"></i></button>
+                               
+                                </div>
+                                <table class="table text-center  table-hover">
+                                    <colgroup>
+                                        <col style="width: 5%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;" [style]="disableInvitado">
+                                      </colgroup>
+                                    <thead class="text-white table-success">
+                                      <tr>
+                                        <th scope="col">Nro</th>
+                                        <th scope="col">PLACA</th>
+                                        <th scope="col">AÑO DE FABRICA</th>
+                                        <th scope="col">MARCA</th>
+                                        <th scope="col">MODELO</th>   
+                                        <th scope="col">FECHA INICIO</th>
+                                        <th scope="col">FECHA FINAL</th>
+                                        <th scope="col">TUC</th>
+                                        <th scope="col" [style]="disableInvitado">BAJA</th>
+                                      </tr>
+                                    </thead>
+
+                                    <tbody *ngFor="let vehiculo of lista_vehiculos, index as i">
+
+                                      <tr  >
+                                        
+                                       <th (click)="toggleCollapse(i)" scope="row">{{i+1}}</th>
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.placa}}</td>
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.anio_fabricacion}}</td>
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.marca}}</td>
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.modelo}}</td>  
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.fecha_inicial|date:'dd/MM/yyyy'}}</td>
+                                        <td (click)="toggleCollapse(i)">{{vehiculo.fecha_final |date:'dd/MM/yyyy'}}</td> 
+                                        <!-- DarBajaVehiculo -->
+                                        <td >{{vehiculo.tuc}}<i class="bi bi-filetype-pdf icon-custom-pdf" (click)="MostrarDetalleTUC(vehiculo.id_vehiculo)"></i></td>
+                                        <td [style]="disableInvitado" ><button class="btn btn-secondary" (click)="DarBajaVehiculo(vehiculo.id_vehiculo)"><i class="bi bi-arrow-down-circle-fill" ></i> Baja</button></td>
+                                     
+                                      </tr> 
+
+                                      <tr [ngClass]="{'collapse': !isExpanded[i]}" id="collapseExample">
+                                        <td colspan="9">
+                                          <div class="card card-body-vehiculo text-start"> 
+                                            <div class="text-center">
+                                              <h6 class="mt-4"><strong>ITINERARIO: </strong></h6>
+                                              <p>{{'"'+vehiculo.itinerario+'"'}}</p>
+                                            </div>
+                                            <div class="container mb-4">
+                                              <div class="row">
+                                                <div class="col-md-4">
+                                                  <ul class="list-unstyled m-3 ">
+                                                    <li><strong>PLACA:</strong> {{vehiculo.placa}}</li>
+                                                    <li><strong>AÑO DE FABRICACIÓN:</strong> {{vehiculo.anio_fabricacion}}</li>
+                                                    <li><strong>MARCA:</strong> {{vehiculo.marca}}</li>
+                                                    <li><strong>MODELO:</strong> {{vehiculo.modelo}}</li>
+                                                    <li><strong>CATEGORÍA:</strong> {{vehiculo.categoria}}</li>
+                                                    <li><strong>CARROCERÍA:</strong> {{vehiculo.carroceria}}</li>
+                                                  </ul>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <ul class="list-unstyled m-3 ">
+                                                    <li><strong>MODALIDAD:</strong> {{vehiculo.modalidad}}</li>
+                                                    <li><strong>PARTIDA REGISTRAL:</strong> {{vehiculo.nro_part_reg}}</li>
+                                                    <li><strong>RESOLUCIÓN:</strong> {{vehiculo.nombre_resolucion}}</li>
+                                                    <li><strong>CONDICIÓN:</strong> {{vehiculo.estado}}</li>
+                                                    <li><strong>COLOR:</strong> {{vehiculo.color}}</li>
+                                                    <li><strong>N° CHASIS:</strong> {{vehiculo.nro_chasis}}</li>
+                                                  </ul>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <ul class="list-unstyled m-3 ">
+                                                    <li><strong>N° ASIENTOS:</strong> {{vehiculo.nro_asientos}}</li>
+                                                    <li><strong>N° SERIE:</strong> {{vehiculo.serie}}</li>
+                                                    <li><strong>CARGA:</strong> {{vehiculo.carga}}</li>
+                                                    <li><strong>PESO:</strong> {{vehiculo.peso}}</li>
+                                                    <li><strong>FECHA INICIAL:</strong> {{vehiculo.fecha_inicial | date:'dd/MM/yyyy'}}</li>
+                                                    <li><strong>FECHA FINAL:</strong> {{vehiculo.fecha_final | date:'dd/MM/yyyy'}}</li>
+                                                  </ul>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center mt-2">
+                                                  <button type="button" class="btn btn-success  button-full-width" (click)="AlertaCreacionTuc(vehiculo.id_vehiculo)" [style]="disableInvitado">GenerarTuc  <i class="bi bi-nut"></i></button>
+
+                                                </div>
+                                              </div>
+                                            </div>    
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                             <!-- Contenido de la Sección 6: Historial Vehicular -->
+                            <div class="tab-pane fade" id="section6">
+                              
+                                <table class="table text-center  table-hover">
+                                  <colgroup>
+                                    <col style="width: 5%;">
+                                    <col style="width: 10%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 25%;">
+                                    <col style="width: 45%;">
+                                  
+                                  </colgroup>
+                                    <thead class="text-white table-success">
+                                      <tr>
+                                        <th scope="col">Nro</th>
+                                        <th scope="col">PLACA</th>                               
+                                        <th scope="col">CONDICION</th>
+                                        <th scope="col">NOMBRE_RESOLUCION</th>
+                                        <th scope="col">RUTA</th>
+                                      </tr>
+                                    </thead>
+                        
+                                    <tbody >
+                                      <tr *ngFor="let item of lista_historial_vehicular, index as i"  >
+                                        
+                                       <th scope="row">{{i+1}}</th>
+                                         <td>{{item.placa}}</td>
+                                        <td>{{item.condicion}}</td>
+                                        <td>{{item.nombre_resolucion}}</td>
+                                        <td>{{item.ruta}}</td>
+                                     
+
+                                      </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div >
+            <hr>
+        
+        
+        </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-5 mb-0"> 
+            <div class="text-center iframe_pdf" >
+                <iframe [src]="pdfUrl" type="application/pdf" width="100%"  height="860p"></iframe>          
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div class="bg-secondary custom-width">
+              <h5 class="modal-title m-2 text-white" id="exampleModalLongTitle">N° de impresion: {{data_tuc.nro_impresion}}</h5>
+              <h4 class="modal-title m-2 text-white" id="exampleModalLongTitle2">TUC: {{data_tuc.nro_tuc}}</h4>
+          </div>
+        
+        <!-- <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body text-start">
+          <ul>
+              <li><strong>PLACA:</strong> {{data_tuc.placa}}</li>
+              <li><strong>RAZON SOCIAL:</strong> {{data_tuc.razon_social}}</li>
+              <li><strong>AÑO DE FABRICACIÓN:</strong> {{data_tuc.anio_fabricacion}}</li>
+              <li><strong>MARCA:</strong> {{data_tuc.marca}}</li>
+            
+              <li><strong>MODALIDAD:</strong> {{data_tuc.modalidad}}</li>
+              <li><strong>PARTIDA REGISTRAL:</strong> {{data_tuc.nro_part_reg}}</li>
+              <li><strong>RESOLUCIÓN:</strong> {{data_tuc.nombre_resolucion}}</li>
+              <li><strong>CONDICIÓN:</strong> {{data_tuc.condicion}}</li>
+              <li><strong>COLOR:</strong> {{data_tuc.color}}</li>
+              <li><strong>N° CHASIS:</strong> {{data_tuc.nro_chasis}}</li>
+
+              <li><strong>N° ASIENTOS:</strong> {{data_tuc.nro_asientos}}</li>
+              <li><strong>CARGA:</strong> {{data_tuc.carga}}</li>
+              <li><strong>PESO:</strong> {{data_tuc.peso}}</li>
+              <li><strong>FECHA EXPED:</strong> {{data_tuc.fecha_exp | date:'dd-MM-yyyy'}}</li>
+              <li><strong>FECHA VENCI:</strong> {{data_tuc.fecha_ven | date:'dd-MM-yyyy'}}</li>
+
+              <li><strong>RUTA AUTORIZADA A OPERAR:</strong> {{data_tuc.ruta}}</li>
+            </ul>
+            <hr>
+            <label class="mx-2 mb-2">copias:</label>
+            <div class="mb-3">
+              <textarea name="tuc_copia" placeholder="Descripción" class="form-control" rows="4" [(ngModel)]="data_tuc.copia" ></textarea>
+            </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="salvarCopiasTuc()" [style]="disableInvitado">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
