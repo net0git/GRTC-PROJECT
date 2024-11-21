@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.comparar = exports.encriptar = void 0;
+exports.encriptar = encriptar;
+exports.comparar = comparar;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 // funciono para encriptar el password
 function encriptar(textoPlano) {
@@ -21,9 +22,7 @@ function encriptar(textoPlano) {
         return hash;
     });
 }
-exports.encriptar = encriptar;
 //funcion para comparar el password con un texto plano 
 function comparar(textoPlano, textoCifrado) {
     return bcryptjs_1.default.compare(textoPlano, textoCifrado);
 }
-exports.comparar = comparar;

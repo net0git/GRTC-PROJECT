@@ -6,7 +6,7 @@ exports.default = {
     databaseParameters: {
         user: 'neto',
         password: '12345',
-        host: 'localhost',
+        host: 'localhost', //172.16.226.4
         port: 5432,
         database: 'grtc_archivo'
     }

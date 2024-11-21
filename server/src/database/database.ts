@@ -9,7 +9,7 @@ const pool = new Pool({
             password: '12345',
             host:  'localhost',//172.16.226.4
             port:  5432,
-            database:  'grtc_archivo'
+            database:  'grtc_archivo_prueba'
 });
 
 pool.connect((error)=>{

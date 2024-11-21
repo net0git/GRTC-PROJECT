@@ -10,9 +10,9 @@ const dbConfig = key_1.default.databaseParameters;
 const pool = new pg_1.Pool({
     user: 'neto',
     password: '12345',
-    host: 'localhost',
+    host: 'localhost', //172.16.226.4
     port: 5432,
-    database: 'grtc_archivo'
+    database: 'grtc_archivo_prueba'
 });
 pool.connect((error) => {
     if (error) {
